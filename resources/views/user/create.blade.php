@@ -59,20 +59,26 @@
     </div>
     <article class="card-body mx-auto" style="max-width: 400px;">
     
-<form action="#" method="post">
+<form action="{{ url('user') }}" method="post">
   @csrf
 	<div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="" class="form-control @error('username') is-invalid @enderror" placeholder="username" type="text" autofocus>
+        <input name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username" type="text" autofocus>
+        @error('username')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div> <!-- form-group// -->
 
     <div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="" class="form-control" placeholder="nama lengkap" type="text">
+        <input name="name" class="form-control @error('username') is-invalid @enderror" placeholder="Nama Lengkap" type="text">
+        @error('name')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div> <!-- form-group// -->
 
    
@@ -104,7 +110,7 @@
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-        <input class="form-control" placeholder="Create password" type="password"><input class="form-control" placeholder="Repeat password" type="password">
+        <input name="password" class="form-control" placeholder="Buat Password" type="password"><input name="password" class="form-control" placeholder="Ulangi password" type="password">
     </div> <!-- form-group// -->
                                           
     <div class="form-group">

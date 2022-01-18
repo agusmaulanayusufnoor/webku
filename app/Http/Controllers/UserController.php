@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 use App\Models\User;
 use App\Models\Level;
 use App\Models\Kode_kantor;
@@ -32,7 +33,7 @@ class UserController extends Controller
         $kantors = Kode_kantor::all();
         
         //page tambah user
-        return view('user.useradd', compact('levels','kantors'));
+        return view('user.create', compact('levels','kantors'));
       
     }
 
@@ -45,6 +46,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'username' => 'required|max:8|unique:users',
+            'name' => 'required'
+        ],['username.required' => 'username tidak boleh kosong','name.required' => 'nama lengkap tidak boleh kosong'
+        ]);
+
+        return $request;
     }
 
     /**
