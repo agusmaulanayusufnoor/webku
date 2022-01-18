@@ -35,7 +35,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                 <a href="{{ url('user/create') }}">
+             <a class="btn btn-primary" href="{{ url('user/create') }}" role="button">
                  <i class="far fa-plus-square nav-icon"></i>
                  Tambah User
                  </a>

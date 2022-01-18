@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Level;
+use App\Models\Kode_kantor;
 
 class UserController extends Controller
 {
@@ -26,8 +28,12 @@ class UserController extends Controller
      */
     public function create()
     {
+        $levels = Level::all();
+        $kantors = Kode_kantor::all();
+        
         //page tambah user
-        return view('user.useradd');
+        return view('user.useradd', compact('levels','kantors'));
+      
     }
 
     /**
