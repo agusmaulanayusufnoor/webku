@@ -35,7 +35,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                 <a href="#">
+                 <a href="{{ url('user/create') }}">
                  <i class="far fa-plus-square nav-icon"></i>
                  Tambah User
                  </a>
@@ -64,6 +64,7 @@
                   <thead class="text-center">
                     <tr>
                       <th style="width: 10px">No</th>
+                      <th>Username</th>
                       <th>Nama</th>
                       <th>Level</th>
                       <th>Kode Kantor</th>
@@ -72,14 +73,24 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach($datas as $key=>$value)
                     <tr>
-                      <td>1.</td>
-                      <td>Agus Maulana</td>
                       <td>
-                       Admin
+                            {{  $value -> id }}
+                      </td>
+                      <td>
+                          {{  $value -> username }}
+                      </td>
+                      <td>
+                          {{  $value -> name }}
+                     </td>
+                      <td>
+                        {{  $value -> level_user }}
                       </td>
 
-                      <td class="text-center">001</td>
+                      <td class="text-center">
+                        {{  $value -> kode_kantor }}
+                      </td>
 
                       <td>
                       <div class="row justify-content-md-center">
@@ -94,6 +105,9 @@
                     </tr>
 
                   </tbody>
+
+
+                  @endforeach
                 </table>
               </div>
               <!-- /.card-body -->

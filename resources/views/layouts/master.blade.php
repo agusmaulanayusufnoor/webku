@@ -14,7 +14,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ asset('assets/dist/img/logo-bprku.jpeg') }}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{ asset('assets/dist/img/logo-bprku.jpeg') }}" alt="BPRKULogo" height="60" width="60">
   </div>
   <!-- navbar -->
   @include('layouts.nav-header')

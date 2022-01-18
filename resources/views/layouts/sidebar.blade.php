@@ -43,13 +43,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{ url('user/create') }}" class="nav-link">
                   <i class="far fa-plus-square nav-icon"></i>
                   <p>Tambah User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="/user" class="nav-link">
                   <i class="far fa-id-badge nav-icon"></i>
                   <p>Data User</p>
                 </a>
@@ -100,7 +100,18 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
+                <li class="nav-item">
+                    <a href="pages/forms/general.html" class="nav-link">
+                      <i class="fa fa-upload nav-icon"></i>
+                      <p>Upload File</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/forms/advanced.html" class="nav-link">
+                      <i class="fas fa-th nav-icon"></i>
+                      <p>Hasil Upload</p>
+                    </a>
+                  </li>
             </ul>
           </li>
           <li class="nav-item">

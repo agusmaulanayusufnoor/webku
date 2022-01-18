@@ -16,5 +16,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('dashboard');
 });
-
+//route user
  Route::get('/user',[UserController::class,'index'])->name('user');
+
+ Route::resource('user', UserController::class);
+ //Route::resource('user', UserController::class);
