@@ -18,6 +18,6 @@ Route::get('/', function () {
 });
 //route user
  Route::get('/user',[UserController::class,'index'])->name('user');
-
+ Route::get('/user',[UserController::class,'store'])->name('user');
  Route::resource('user', UserController::class);
  //Route::resource('user', UserController::class);

@@ -55,17 +55,18 @@
     <!-- form tambah -->
   <div class="card card-primary">
     <div class="card-header mx-auto"  style="width: 360px; margin-top:30px">
-    <h3 class="text-center">Tambah User</h3>
+    <h3 class="text-center">Edit User</h3>
     </div>
     <article class="card-body mx-auto" style="min-width: 400px;">
 
-<form action="{{ url('user') }}" method="post">
+<form action="{{ url('user/'.$users->id) }}" method="post">
   @csrf
+  <input type="hidden" name="_method" value="PATCH">
 	<div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="username" value="{{  old('username')  }}" class="form-control @error('username') is-invalid @enderror" placeholder="Username" type="text" autofocus>
+        <input name="username" value="{{  $users->username  }}" class="form-control @error('username') is-invalid @enderror" placeholder="Username" type="text" autofocus>
         @error('username')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -75,7 +76,7 @@
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="name" value="{{  old('name')  }}" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Lengkap" type="text">
+        <input name="name" value="{{  $users->name  }}" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Lengkap" type="text">
         @error('name')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -87,7 +88,7 @@
 		    <span class="input-group-text"> <i class="fa fa-briefcase"></i> </span>
 		</div>
 		<select name="level_id" class="form-control @error('level_id') is-invalid @enderror">
-			<option value=""> pilih divisi</option>
+			<option value="{{ $users -> level->id }}">{{ $users -> level->level_divisi }}</option>
           @foreach ($levels as $items)
 
           <option value="{{ $items->id }}" {{ old('level_id') == $items->id ? 'selected' : '' }}>{{ $items->level_divisi }}</option>
@@ -102,7 +103,7 @@
 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
 		</div>
 		<select name="kantor_id" class="form-control @error('kantor_id') is-invalid @enderror">
-			<option value=""> pilih kantor</option>
+			<option value="{{ $users->kantor->id }}"> {{ $users ->kantor->nama_kantor }}</option>
 		@foreach ($kantors as $kode)
           <option value="{{ $kode->id }}" {{ old('kantor_id') == $kode->id ? 'selected' : '' }}>{{ $kode->nama_kantor }}</option>
           @endforeach

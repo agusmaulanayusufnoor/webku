@@ -31,6 +31,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <!-- <h1 class="m-0">DATA USER</h1> -->
+
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -67,7 +68,7 @@
                       <th>Username</th>
                       <th>Nama</th>
                       <th>Level</th>
-                      <th>Kode Kantor</th>
+                      <th>Kantor</th>
                       <th>Ubah</th>
                       <th>Hapus</th>
                     </tr>
@@ -76,7 +77,7 @@
                     @foreach($datas as $key=>$value)
                     <tr>
                       <td>
-                            {{  $value -> id }}
+                            {{  $loop -> iteration }}
                       </td>
                       <td>
                           {{  $value -> username }}
@@ -85,22 +86,32 @@
                           {{  $value -> name }}
                      </td>
                       <td>
-                        {{  $value -> level_user }}
+                        {{  $value -> level->level_divisi }}
                       </td>
 
                       <td class="text-center">
-                        {{  $value -> kode_kantor }}
+                        {{  $value -> kantor->nama_kantor }}
                       </td>
 
                       <td>
                       <div class="row justify-content-md-center">
-                      <i class="fa fa-edit nav-icon" alt="ubah"></i>
+                        <a class="btn btn-primary btn-sm" href="{{ url('user/'.$value->id.'/edit') }}">
+                        <i class="fa fa-edit nav-icon" alt="ubah"></i>
+                        </a>
+
                     </div>
                         </td>
                       <td>
                       <div class="row justify-content-md-center">
-                        <i class="fa fa-minus-circle nav-icon" alt="hapus"></i>
+                        <form method="post" action="{{ url('user/'.$value->id) }}">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger btn-sm" type="submit">
+                                <i class="fa fa-minus-circle nav-icon" alt="hapus"></i>
+                            </button>
+                        </form>
                     </div>
+
                       </td>
                     </tr>
 

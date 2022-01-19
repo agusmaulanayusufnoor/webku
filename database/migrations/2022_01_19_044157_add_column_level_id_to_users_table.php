@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnKodeKantorToUsersTable extends Migration
+class AddColumnLevelIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddColumnKodeKantorToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //tambah kolom kode_kantor
-            $table->string('kode_kantor');
+            //
+            $table->integer('level_id');
         });
     }
 
@@ -27,8 +27,7 @@ class AddColumnKodeKantorToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //hapus kolom kode_kantor
-            $table->dropColumn('kode_kantor');
+            //
         });
     }
 }
