@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StockController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,4 +21,8 @@ Route::get('/', function () {
  Route::get('/user',[UserController::class,'index'])->name('user');
  Route::get('/user',[UserController::class,'store'])->name('user');
  Route::resource('user', UserController::class);
- //Route::resource('user', UserController::class);
+
+ //route stock
+ Route::get('/stock',[StockController::class,'index'])->name('stock');
+ Route::get('/stock',[StockController::class,'store'])->name('stock');
+ Route::resource('stock', StockController::class);
