@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Waktu pembuatan: 18 Jan 2022 pada 17.45
+-- Waktu pembuatan: 20 Jan 2022 pada 13.04
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.27
 
@@ -21,14 +21,6 @@ SET time_zone = "+00:00";
 -- Database: `bprku`
 --
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `levels`
---
-
-
-
 --
 -- Dumping data untuk tabel `levels`
 --
@@ -38,26 +30,6 @@ INSERT INTO `levels` (`id`, `level_divisi`, `created_at`, `updated_at`) VALUES
 (2, 'pelayanan', NULL, NULL),
 (3, 'kredit', NULL, NULL),
 (4, 'akunting', NULL, NULL);
-
---
--- Indexes for dumped tables
---
-
---
--- Indeks untuk tabel `levels`
---
-ALTER TABLE `levels`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `levels`
---
-ALTER TABLE `levels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

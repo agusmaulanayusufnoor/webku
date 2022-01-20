@@ -204,8 +204,7 @@
 <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
 {{-- menu export --}}
 <script>
-
-    $(function () {
+    $(document).ready(function () {
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
@@ -219,7 +218,27 @@
         "autoWidth": false,
         "responsive": true,
       });
+
+      // Create date inputs
+    minDate = new DateTime($('#min'), {
+        format: 'MMMM Do YYYY'
     });
+    maxDate = new DateTime($('#max'), {
+        format: 'MMMM Do YYYY'
+    });
+ 
+    // DataTables initialisation
+    var table = $('#example').DataTable();
+ 
+    // Refilter the table
+    $('#min, #max').on('change', function () {
+        table.draw();
+    });
+    });
+
+// Custom filtering function which will search data in column four between two values
+
+
 </script>
 
 

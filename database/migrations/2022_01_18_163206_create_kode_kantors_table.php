@@ -16,6 +16,7 @@ class CreateKodeKantorsTable extends Migration
         Schema::create('kode_kantors', function (Blueprint $table) {
             $table->id();
             $table->string('kode_kantor');
+            $table->string('kode_kantor_slik');
             $table->string('nama_kantor');
             $table->timestamps();
         });
