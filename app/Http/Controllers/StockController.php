@@ -90,9 +90,12 @@ class StockController extends Controller
      * @param  \App\Models\stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(stock $stock)
+    public function destroy($id)
     {
-        //
+        //hapus data satu2
+        $hapusstock = stock::find($id);
+        $hapusstock->delete();
+        return redirect('stock');
     }
     public function search(Request $request)
     {

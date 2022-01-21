@@ -94,7 +94,8 @@
 
 
 {{-- datatable --}}
-            <table id="example1" class="table table-bordered table-striped">
+<div class="table-responsive">
+            <table id="example1" class="table table-bordered table-striped table-sm">
                 <thead class="text-center">
                   <tr>
                     <th style="width: 5px">No</th>
@@ -112,7 +113,7 @@
                 </thead>
                 <tbody>
                   @foreach($stockdata as $key=>$value)
-                  <tr>
+                  <tr style="tr { height: 50px; }">
                     <td>
                           {{  $loop -> iteration }}
                     </td>
@@ -145,12 +146,14 @@
                     </td>
                     <td>
                     <div class="row justify-content-md-center">
-                      <form method="post" action="{{ url('user/'.$value->id) }}">
+                      <form method="post" action="{{ url('stock/'.$value->id) }}">
                           @csrf
                           <input type="hidden" name="_method" value="DELETE">
                           <button class="btn btn-danger btn-sm" type="submit">
+                              <small>
                               <i class="fa fa-minus-circle nav-icon" alt="hapus"></i>
-                          </button>
+                              </small>
+                            </button>
                       </form>
                   </div>
 
@@ -158,11 +161,8 @@
                   </tr>
                   @endforeach
                 </tbody>
-
-
-
               </table>
-
+</div>
           </div>
           <!-- /.card-body -->
         </div>
@@ -272,6 +272,7 @@
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
       $('#example2').DataTable({
+
         "paging": true,
         "lengthChange": false,
         "searching": false,
