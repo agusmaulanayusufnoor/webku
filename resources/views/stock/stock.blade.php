@@ -61,36 +61,37 @@
           <!-- /.card-header -->
           <div class="card-body">
           {{-- form filter tanggal --}}
-          <form action="{{ route('search') }}" method="get">
-            @csrf
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                  <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
-              </div>
-                  <input name="from" id="min" value="" class="form-control placeholder="Username" type="text" autofocus>
-              </div> <!-- form-group// -->
 
-              <div class="form-group input-group">
+          <form action="{{ route('search') }}" method="get">
+            <div class="d-flex justify-content-center">
+            @csrf
+            <div class="col-8 col-sm-">
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text label label-default">Mulai Tanggal</span>
+                  </div>
               <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
               </div>
-                  <input name="to" id="max" value="" class="form-control placeholder="Nama Lengkap" type="text">
+                  <input name="from" id="min" onfocus="(this.type='date')"
+                  class="form-control placeholder="Dari Tanggal" type="text">
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text label label-default">Sampai Tanggal</span>
+                  </div>
+              <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+              </div>
+                  <input name="to" id="max" onfocus="(this.type='date')" class="form-control placeholder="Sampai Tanggal" type="text">
+
+                  <button type="submit" class="btn btn-primary " name="search"> Filter </button>
               </div> <!-- form-group// -->
-              <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block" name="search"> Filter </button>
-              </div> <!-- form-group// -->
+        </div><!-- col7 -->
+    </div>
           </form>
+
 {{-- filter tanggal --}}
-            <table cellspacing="5" cellpadding="5" border="0">
-                <tbody><tr>
-                    <td>Minimum date:</td>
-                    <td><input type="text" id="min" name="min"></td>
-                </tr>
-                <tr>
-                    <td>Maximum date:</td>
-                    <td><input type="text" id="max" name="max"></td>
-                </tr>
-            </tbody></table>
+
 
 {{-- datatable --}}
             <table id="example1" class="table table-bordered table-striped">
@@ -225,31 +226,51 @@
 {{-- menu export --}}
 <script>
 
-  
+
     $(document).ready(function () {
- 
-     
-      // Create date inputs
-      minDate = new DateTime($('#min'), {
-        format: 'DD/MM/YYYY'
-    });
-    maxDate = new DateTime($('#max'), {
-        format: 'DD/MM/YYYY'
-    });
- 
-    // DataTables initialisation
-    var table = $('#example2').DataTable();
- 
-    // Refilter the table
-    $('#min, #max').on('changeDate', function () {
-        table.draw();
-    });
 
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "buttons": [
+                    {
+                        extend:"copy",
+                        exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
+                    },
+                    {
+                        extend:"csv",
+                        exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
+                    },
+                    {
+                        extend:"excel",
+                        title : "",
+                        exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
+                    },
+                    {
+                        extend:"pdf",
+                        title :"Laporan Stok Buku Tabungan dan Bilyet Deposito",
+                        exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
+                    },
+                    {
+                        extend:"print",
+                        title :"Laporan Stok Buku Tabungan dan Bilyet Deposito",
+                        exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
+                    },
+                    {
+                        extend:"colvis"}
+                ]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      
+
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,
@@ -259,15 +280,10 @@
         "autoWidth": true,
         "responsive": true,
       });
-      
+
 
     });
 
 // Custom filtering function which will search data in column four between two values
-
-
 </script>
-
-
-
 @endpush
