@@ -60,6 +60,26 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
+          {{-- form filter tanggal --}}
+          <form action="{{ route('search') }}" method="get">
+            @csrf
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+              </div>
+                  <input name="from" id="min" value="" class="form-control placeholder="Username" type="text" autofocus>
+              </div> <!-- form-group// -->
+
+              <div class="form-group input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+              </div>
+                  <input name="to" id="max" value="" class="form-control placeholder="Nama Lengkap" type="text">
+              </div> <!-- form-group// -->
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-block" name="search"> Filter </button>
+              </div> <!-- form-group// -->
+          </form>
 {{-- filter tanggal --}}
             <table cellspacing="5" cellpadding="5" border="0">
                 <tbody><tr>
@@ -204,36 +224,43 @@
 <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
 {{-- menu export --}}
 <script>
+
+  
     $(document).ready(function () {
+ 
+     
+      // Create date inputs
+      minDate = new DateTime($('#min'), {
+        format: 'DD/MM/YYYY'
+    });
+    maxDate = new DateTime($('#max'), {
+        format: 'DD/MM/YYYY'
+    });
+ 
+    // DataTables initialisation
+    var table = $('#example2').DataTable();
+ 
+    // Refilter the table
+    $('#min, #max').on('changeDate', function () {
+        table.draw();
+    });
+
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,
         "searching": false,
         "ordering": true,
         "info": true,
-        "autoWidth": false,
+        "autoWidth": true,
         "responsive": true,
       });
+      
 
-      // Create date inputs
-    minDate = new DateTime($('#min'), {
-        format: 'MMMM Do YYYY'
-    });
-    maxDate = new DateTime($('#max'), {
-        format: 'MMMM Do YYYY'
-    });
- 
-    // DataTables initialisation
-    var table = $('#example').DataTable();
- 
-    // Refilter the table
-    $('#min, #max').on('change', function () {
-        table.draw();
-    });
     });
 
 // Custom filtering function which will search data in column four between two values

@@ -25,4 +25,6 @@ Route::get('/', function () {
  //route stock
  Route::get('/stock',[StockController::class,'index'])->name('stock');
  Route::get('/stock',[StockController::class,'store'])->name('stock');
+//cari data stock
+Route::get('/search', [StockController::class, 'search'])->name('search');
  Route::resource('stock', StockController::class);

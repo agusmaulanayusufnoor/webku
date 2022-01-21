@@ -123,4 +123,15 @@ class StockController extends Controller
     {
         //
     }
+    public function search(Request $request)
+    {
+        $stock_jenis     = Stock_jenis::all();
+        $kantors         = Kode_kantor_slik::all();
+        //cari tanggal
+        $tgl1    = '2022-01-01';
+        $tgl2    = '2022-01-05';
+        $query   = stock::where('tanggal', '>=', $tgl1);
+        dd($query); 
+        return view('stock.stock', compact('query'));
+    }
 }
