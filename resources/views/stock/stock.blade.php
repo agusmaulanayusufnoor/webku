@@ -385,11 +385,12 @@
                     },
                     {
                         data: 'action',
-                        ordering :'false',
                         name: 'action'
                     },
 
-                
+                ],
+                order: [
+                    [2, 'desc']
                 ],
                     
         "lengthMenu": [
@@ -447,7 +448,7 @@
         "paging": true,
         "lengthChange": false,
         "searching": false,
-        "ordering": false,
+        "ordering": true,
         "info": true,
         "autoWidth": true,
         "responsive": true,
