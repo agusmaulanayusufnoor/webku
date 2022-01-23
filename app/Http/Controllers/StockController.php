@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Stock;
 use App\Models\Kode_kantor_slik;
+use App\Models\Kode_kantor;
 use App\Models\Level;
 use App\Models\Stock_jenis;
 use Carbon\Carbon;
 use App\Http\Controllers\AjaxController;
+use Yajra\DataTables\DataTables;
 use DB;
 
 class StockController extends Controller
@@ -22,9 +24,11 @@ class StockController extends Controller
     {
         //
        $stock_jenis     = Stock_jenis::all();
-       $kantors         = Kode_kantor_slik::all();
-       $stockdata       = stock::all();
-       //$stockdata->tanggal = 
+       $kantors         = kode_kantor::all();
+      // $stockdata       = stock::all();
+        $stockdata = stock::join('kode_kantors', 'stocks.sandi_kantor', '=', 'kode_kantors.id')
+        ->get(['stocks.*','kode_kantors.*']);
+//dd($stockdata); 
 
       //return view('stock.stock', compact('stockdata','stock_jenis','kantors',));
      
@@ -43,13 +47,17 @@ class StockController extends Controller
                 if($request->from_date == $request->to_date){
                  
                     //kita filter tanggalnya sesuai dengan request from_date
-                     $stockdata = stock::whereDate('tanggal',$tgl1)->get();
+                     $stockdata = stock::join('kode_kantors', 'stocks.sandi_kantor', '=', 'kode_kantors.id')
+                                        ->orderBy('stocks.id', 'DESC')
+                                        ->whereDate('tanggal',$tgl1)->get();
 
                
                  }
                  else{
                 //     //kita filter dari tanggal awal ke akhir
-                     $stockdata = stock::whereBetween('tanggal', [$tgl1, $tgl2])->get();
+                     $stockdata = stock::join('kode_kantors', 'stocks.sandi_kantor', '=', 'kode_kantors.id')
+                                        ->orderBy('stocks.id', 'DESC')
+                                        ->whereBetween('tanggal', [$tgl1, $tgl2])->get();
             
                  }    
                 
@@ -58,11 +66,18 @@ class StockController extends Controller
             //load data default
             else
             {
+                $stock_jenis     = Stock_jenis::all();
+                $kantors         = kode_kantor::all();
                 $stockdata = stock::all();
+                $stockdata = stock::join('kode_kantors', 'stocks.sandi_kantor', '=', 'kode_kantors.id')
+                            ->orderBy('stocks.id', 'DESC')
+                           ->get(['stocks.*','kode_kantors.*']);
+         
+                            
             }
             return datatables()->of($stockdata)
                         ->addColumn('action', function($data){
-                            $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-info btn-sm edit-post"><i class="far fa-edit"></i> Edit</a>';
+                            $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm edit-post"><i class="far fa-edit"></i> Edit</a>';
                             $button .= '&nbsp;&nbsp;';
                             $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Delete</button>';     
                             return $button;
@@ -71,9 +86,11 @@ class StockController extends Controller
                         ->addIndexColumn()
                         ->make(true);
         }
-       return view('stock.stock');
+       //return view('stock.stock');
+       return view('stock.stock', compact('stockdata','stock_jenis','kantors',));
        //return response()->json($stockdata);
 
+       //
        //return $stockdata;
     }
     public function search(Request $request)
@@ -174,7 +191,22 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = $request->id;
+        
+        $post   =  stock::updateOrCreate(['id' => $id],
+                    [
+                        'jenis'             =>  $request->jenis,
+                        'sandi_kantor'      =>  $request->sandi_kantor,
+                        'tanggal'           =>  $request->tanggal,
+                        'jml_stok_awal'     =>  $request->jml_stok_awal,
+                        'tambahan_stok'     =>  $request->tambahan_stok,
+                        'jml_digunakan'     =>  $request->jml_digunakan,
+                        'jml_rusak'         =>  $request->jml_rusak,
+                        'jml_hilang'        =>  $request->jml_hilang,
+                        'jml_stok_akhir'    =>  $request->jml_stok_akhir
+                    ]); 
+
+        return response()->json($post);
     }
 
     /**

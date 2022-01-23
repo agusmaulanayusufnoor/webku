@@ -25,7 +25,8 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-  <!-- <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.dateTime.min.css') }}"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
+        integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
 
 
   @endpush
@@ -50,7 +51,7 @@
     </div>
     <!-- /.content-header -->
 
-{{-- datatable --}}
+ <!-- datatable  -->
 <div class="container-fluid">
     <div class="row">
       <div class="col-12">
@@ -65,7 +66,7 @@
           
             <div class="d-flex justify-content-center">
                   
-              <div class="col-3 col-sm-3">
+              <div class="col-4 col-sm-4">
               <div class="input-group date">
                   <div class="input-group-prepend">
                       <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
@@ -80,21 +81,31 @@
 
                       <button type="submit" class="btn btn-primary btn-sm" name="filter" id="filter"> Filter </button>
                       <button type="button" name="refresh" id="refresh" class="btn btn-outline-secondary btn-sm">Refresh</button>
+                      
                   </div> <!-- form-group// -->
+               
               </div><!-- col3 -->
+              <div class="col-2 col-sm-2">
+              <a href="javascript:void(0)" class="btn btn-primary" id="tombol-tambah">Tambah Stock</a>
+              </div>
          
           </div>
       
 
-{{-- filter tanggal --}}
+<!--akhir filter tanggal -->
+
+<!-- MULAI TOMBOL TAMBAH -->
 
 
-{{-- datatable --}}
+                <br>
+ <!-- AKHIR TOMBOL -->
+
+<!-- datatable  -->
 <div class="table-responsive">
             <table id="example1" class="table table-bordered table-striped table-sm">
                 <thead class="text-center">
                   <tr>
-                    <!-- <th style="width: 5px">No</th> -->
+                    <th style="width: 8px">No. </th> 
                     <th>Jenis</th>
                     <th>Sandi Kantor</th>
                     <th>Tanggal</th>
@@ -104,12 +115,14 @@
                     <th>Jumlah Rusak</th>
                     <th>Jumlah Hilang</th>
                     <th>Jumlah Stok Akhir</th>
+                    <th>Edit/Del</th>
                     <!-- <th>Del</th> -->
                   </tr>
                 </thead>
              
               </table>
 </div>
+
           </div>
           <!-- /.card-body -->
         </div>
@@ -118,8 +131,107 @@
       <!-- /.col -->
     </div>
     <!-- /.row -->
-  </div>
+  </div> 
+  <!-- akhir container -->
+<!-- MULAI MODAL FORM TAMBAH/EDIT-->
+<div class="modal fade" id="tambah-edit-modal" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-judul"></h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-tambah-edit" name="form-tambah-edit" class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-12">
 
+                                <input type="hidden" name="id" id="id">
+
+                                <div class="form-group">
+                                    <!-- <label for="name" class="col-sm-12 control-label">Jenis Stock</label> -->
+                                    <div class="col-sm-12">
+                                        <select name="jenis" id="jenis" class="form-control required">
+                                            <option value="">- Pilih Jenis Stock -</option>
+                                            <option value="1">Tabungan</option>
+                                            <option value="2">Deposito</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- <label for="name" class="col-sm-12 control-label">Kantor Cabang</label> -->
+                                    <div class="col-sm-12">
+                                        <select name="sandi_kantor" id="sandi_kantor" class="form-control required">
+                                            <option value="">- Pilih Kantor -</option>
+                                            <option value="3">001 - Cab. KPO</option>
+                                            <option value="2">002 - Cab. Cisalak</option>
+                                            <option value="4">003 - Cab. Subang</option>
+                                            <option value="5">004 - Cab. Purwadadi</option>
+                                            <option value="6">005 - Cab. Pamanukan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                   
+                                    <div class="col-sm-12">
+                                    <input name="tanggal" id="tanggal" value=""
+                                    class="form-control inputTgl" placeholder="Tanggal" type="text">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="jml_stok_awal" name="jml_stok_awal"
+                                        placeholder="Jumlah Stok Awal" value="" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="tambahan_stok" name="tambahan_stok"
+                                        placeholder="Tambahan Stok" value="" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="jml_digunakan" name="jml_digunakan"
+                                        placeholder="Jumlah Digunakan" value="" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="jml_rusak" name="jml_rusak"
+                                        placeholder="Jumlah Rusak" value="" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="jml_hilang" name="jml_hilang"
+                                        placeholder="Jumlah Hilang" value="" required>
+                                    </div>
+                                </div>
+                                <!-- jumlah stok akhir dihidden dan dijumlahkan -->
+                                      <input type="hidden" name="jml_stok_akhir" id="jml_stok_akhir" value="">
+                            </div>
+
+                            <div class="col-sm-offset-2 col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-block" id="tombol-simpan"
+                                    value="create">Simpan
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- AKHIR MODAL -->
 @endsection
 
 @push('custom-js')
@@ -166,6 +278,10 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"
+        integrity="sha256-siqh9650JHbYFKyZeTEAhq+3jvkFCG8Iz+MHdr9eKrw=" crossorigin="anonymous"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script> -->
 {{-- menu export --}}
@@ -185,6 +301,12 @@
             $('.datepicker').datepicker({
                 todayBtn: 'linked',
                 dateFormat: 'dd/mm/yy',
+              autoclose: true, 
+              todayHighlight: true,
+            });
+            $('.inputTgl').datepicker({
+                todayBtn: 'linked',
+                dateFormat: 'yy-mm-dd',
               autoclose: true, 
               todayHighlight: true,
             });
@@ -211,22 +333,27 @@
    function load_data(from_date = '', to_date = '') {
     //alert(from_date)
       $("#example1").DataTable({
-        
+        "fnCreatedRow": function (row, data, index) {
+                    $('td', row).eq(0).html(index + 1);
+                    },
         "responsive": true, "lengthChange": true, "autoWidth": true,
-        "processing": true,"serverSide": true, //aktifkan server-side
+        "processing": true,"serverSide": true, "deferRender": true,//aktifkan server-side
         ajax: {
                     url: "{{ route('stock.index') }}",
                     data:{from_date:from_date, to_date:to_date}, //jangan lupa kirim parameter tanggal 
                     type: "GET",
                 },
-             
                 columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
                         data: 'jenis',
                         name: 'jenis'
                     },
                     {
-                        data: 'sandi_kantor',
-                        name: 'sandi_kantor'
+                        data: 'kode_kantor_slik',
+                        name: 'kode_kantor_slik'
                     },
                     {
                         data: 'tanggal',
@@ -256,53 +383,54 @@
                         data: 'jml_stok_akhir',
                         name: 'jml_stok_akhir'
                     },
-                   
+                    {
+                        data: 'action',
+                        ordering :'false',
+                        name: 'action'
+                    },
 
+                
                 ],
-                order: [
-                    [0, 'desc']
-                ],
-       
-       
+                    
         "lengthMenu": [
-        [10, 14, 28, -1],
-        [10, 14, 28, "All"]
+        [14, 28, -1],
+        [14, 28, "All"]
         ],
         "dom": 'Bfrtip',
       
         "buttons": [
                     {
                         extend:"copy",
-                        // exportOptions: {
-                        // columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        // }
+                        exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
                     },
                     {
                         extend:"csv",
-                        // exportOptions: {
-                        // columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        // }
+                        exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
                     },
                     {
                         extend:"excel",
                         title : "",
-                        // exportOptions: {
-                        // columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        // }
+                        exportOptions: {
+                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
                     },
                     {
                         extend:"pdf",
                         title :"Laporan Stok Buku Tabungan dan Bilyet Deposito",
-                        // exportOptions: {
-                        // columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        // }
+                        exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
                     },
                     {
                         extend:"print",
                         title :"Laporan Stok Buku Tabungan dan Bilyet Deposito",
-                        // exportOptions: {
-                        // columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        // }
+                        exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        }
                     },
                         {
                           extend:"pageLength"
@@ -310,6 +438,8 @@
                     {
                         extend:"colvis"}
                 ]
+
+                
       });
 
       $('#example2').DataTable({
@@ -317,7 +447,7 @@
         "paging": true,
         "lengthChange": false,
         "searching": false,
-        "ordering": true,
+        "ordering": false,
         "info": true,
         "autoWidth": true,
         "responsive": true,
@@ -325,7 +455,114 @@
     }//endfunctionloaddata
     });
  
-// Custom filtering function which will search data in column four between two values
+//TOMBOL TAMBAH DATA
+        //jika tombol-tambah diklik maka
+        $('#tombol-tambah').click(function () {
+            $('#button-simpan').val("create-post"); //valuenya menjadi create-post
+            $('#id').val(''); //valuenya menjadi kosong
+            $('#form-tambah-edit').trigger("reset"); //mereset semua input dll didalamnya
+            $('#modal-judul').html("Tambah Stock Tabungan dan Deposito"); //valuenya tambah pegawai baru
+            $('#tambah-edit-modal').modal('show'); //modal tampil
+        });
+        $("#jml_stok_awal, #tambahan_stok,#jml_digunakan,#jml_rusak").keyup(function() {
+                            var jml_stok_awal = $("#jml_stok_awal").val();
+                            var tambahan_stok = $("#tambahan_stok").val();
+                            var jml_digunakan = $("#jml_digunakan").val();
+                            var jml_rusak     = $("#jml_rusak").val();
+                            var jml_hilang = $("#jml_hilang").val();
+
+                            var jml_stok_akhir = parseInt(jml_stok_awal) + parseInt(tambahan_stok) - parseInt(jml_digunakan) - parseInt(jml_rusak) - parseInt(jml_rusak);
+                            $("#jml_stok_akhir").val(jml_stok_akhir);
+
+                            
+                        });
+
+        if ($("#form-tambah-edit").length > 0) {
+            $("#form-tambah-edit").validate({
+             
+
+                submitHandler: function (form) {
+               
+                    var actionType = $('#tombol-simpan').val();
+                    $('#tombol-simpan').html('Sending..');
+
+                    $.ajax({
+                        data: $('#form-tambah-edit')
+                            .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
+                        url: "{{ route('stock.store') }}", //url simpan data
+                        type: "POST", //karena simpan kita pakai method POST
+                        dataType: 'json', //data tipe kita kirim berupa JSON
+                        success: function (data) { //jika berhasil 
+                         // alert(data);
+                            $('#form-tambah-edit').trigger("reset"); //form reset
+                            $('#tambah-edit-modal').modal('hide'); //modal hide
+                            $('#tombol-simpan').html('Simpan'); //tombol simpan
+                            var oTable = $('#example1').dataTable(); //inialisasi datatable
+                            oTable.fnDraw(false); //reset datatable
+                            iziToast.success({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
+                                title: 'Data Berhasil Disimpan',
+                                message: '{{ Session('
+                                success ')}}',
+                                position: 'topRight'
+                            });
+                        },
+                        error: function (data) { //jika error tampilkan error pada console
+                            console.log('Error:', data);
+                            $('#tombol-simpan').html('Simpan');
+                        }
+                    });
+                }
+            })
+        }
+
+        //TOMBOL EDIT DATA PER PEGAWAI DAN TAMPIKAN DATA BERDASARKAN ID PEGAWAI KE MODAL
+        //ketika class edit-post yang ada pada tag body di klik maka
+        // $('body').on('click', '.edit-post', function () {
+        //     var data_id = $(this).data('id');
+        //     $.get('pegawai/' + data_id + '/edit', function (data) {
+        //         $('#modal-judul').html("Edit Post");
+        //         $('#tombol-simpan').val("edit-post");
+        //         $('#tambah-edit-modal').modal('show');
+
+        //         //set value masing-masing id berdasarkan data yg diperoleh dari ajax get request diatas               
+        //         $('#id').val(data.id);
+        //         $('#nama_pegawai').val(data.nama_pegawai);
+        //         $('#jenis_kelamin').val(data.jenis_kelamin);
+        //         $('#email').val(data.email);
+        //         $('#alamat').val(data.alamat);
+        //     })
+        // });
+
+        //jika klik class delete (yang ada pada tombol delete) maka tampilkan modal konfirmasi hapus maka
+        // $(document).on('click', '.delete', function () {
+        //     dataId = $(this).attr('id');
+        //     $('#konfirmasi-modal').modal('show');
+        // });
+
+        //jika tombol hapus pada modal konfirmasi di klik maka
+        // $('#tombol-hapus').click(function () {
+        //     $.ajax({
+
+        //         url: "pegawai/" + dataId, //eksekusi ajax ke url ini
+        //         type: 'delete',
+        //         beforeSend: function () {
+        //             $('#tombol-hapus').text('Hapus Data'); //set text untuk tombol hapus
+        //         },
+        //         success: function (data) { //jika sukses
+        //             setTimeout(function () {
+        //                 $('#konfirmasi-modal').modal('hide'); //sembunyikan konfirmasi modal
+        //                 var oTable = $('#table_pegawai').dataTable();
+        //                 oTable.fnDraw(false); //reset datatable
+        //             });
+        //             iziToast.warning({ //tampilkan izitoast warning
+        //                 title: 'Data Berhasil Dihapus',
+        //                 message: '{{ Session('
+        //                 delete ')}}',
+        //                 position: 'bottomRight'
+        //             });
+        //         }
+        //     })
+        // });
 </script>
 
 @endpush
