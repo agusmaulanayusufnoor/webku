@@ -18,13 +18,14 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('assets/plugins/jquery-ui/jquery-ui.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.dateTime.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.dateTime.min.css') }}"> -->
 
 
   @endpush
@@ -61,34 +62,29 @@
           <!-- /.card-header -->
           <div class="card-body">
           {{-- form filter tanggal --}}
-
-          <form action="{{ route('search') }}" method="get">
+          
             <div class="d-flex justify-content-center">
-            @csrf
-            <div class="col-8 col-sm-">
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text label label-default">Mulai Tanggal</span>
+                  
+              <div class="col-3 col-sm-3">
+              <div class="input-group date">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
                   </div>
-              <div class="input-group-prepend">
-                  <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
-              </div>
-                  <input name="from" id="min" onfocus="(this.type='date')"
-                  class="form-control placeholder="Dari Tanggal" type="text">
-
-                <div class="input-group-prepend">
-                    <span class="input-group-text label label-default">Sampai Tanggal</span>
+                      <input name="from_date" id="from_date" 
+                      class="form-control datepicker" placeholder="Dari Tanggal" type="text">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
                   </div>
-              <div class="input-group-prepend">
-                  <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
-              </div>
-                  <input name="to" id="max" onfocus="(this.type='date')" class="form-control placeholder="Sampai Tanggal" type="text">
+                      <input name="to_date" id="to_date" 
+                      class="form-control datepicker" placeholder="Sampai Tanggal" type="text">
 
-                  <button type="submit" class="btn btn-primary " name="search"> Filter </button>
-              </div> <!-- form-group// -->
-        </div><!-- col7 -->
-    </div>
-          </form>
+                      <button type="submit" class="btn btn-primary btn-sm" name="filter" id="filter"> Filter </button>
+                      <button type="button" name="refresh" id="refresh" class="btn btn-outline-secondary btn-sm">Refresh</button>
+                  </div> <!-- form-group// -->
+              </div><!-- col3 -->
+         
+          </div>
+      
 
 {{-- filter tanggal --}}
 
@@ -98,7 +94,7 @@
             <table id="example1" class="table table-bordered table-striped table-sm">
                 <thead class="text-center">
                   <tr>
-                    <th style="width: 5px">No</th>
+                    <!-- <th style="width: 5px">No</th> -->
                     <th>Jenis</th>
                     <th>Sandi Kantor</th>
                     <th>Tanggal</th>
@@ -108,59 +104,10 @@
                     <th>Jumlah Rusak</th>
                     <th>Jumlah Hilang</th>
                     <th>Jumlah Stok Akhir</th>
-                    <th>Del</th>
+                    <!-- <th>Del</th> -->
                   </tr>
                 </thead>
-                <tbody>
-                  @foreach($stockdata as $key=>$value)
-                  <tr style="tr { height: 50px; }">
-                    <td>
-                          {{  $loop -> iteration }}
-                    </td>
-                    <td>
-                       {{  $value -> jenisstok->jenis }}
-                    </td>
-                    <td>
-                        {{  $value -> kantor->nama_kantor }}
-                   </td>
-                    <td>
-                      {{  date('d/m/Y',strtotime($value -> tanggal)) }}
-                    </td>
-                    <td class="text-center">
-                      {{  $value -> jml_stok_awal }}
-                    </td>
-                    <td class="text-center">
-                        {{  $value -> tambahan_stok }}
-                    </td>
-                    <td class="text-center">
-                        {{  $value -> jml_digunakan }}
-                    </td>
-                    <td class="text-center">
-                        {{  $value -> jml_rusak }}
-                    </td>
-                    <td class="text-center">
-                        {{  $value -> jml_hilang }}
-                    </td>
-                    <td class="text-center">
-                        {{  $value -> jml_stok_akhir }}
-                    </td>
-                    <td>
-                    <div class="row justify-content-md-center">
-                      <form method="post" action="{{ url('stock/'.$value->id) }}">
-                          @csrf
-                          <input type="hidden" name="_method" value="DELETE">
-                          <button class="btn btn-danger btn-sm" type="submit">
-                              <small>
-                              <i class="fa fa-minus-circle nav-icon" alt="hapus"></i>
-                              </small>
-                            </button>
-                      </form>
-                  </div>
-
-                    </td>
-                  </tr>
-                  @endforeach
-                </tbody>
+             
               </table>
 </div>
           </div>
@@ -188,7 +135,7 @@
 <!-- ChartJS -->
 <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
-<script src="{{ asset('assets/plugins/sparklines/sparkline.js') }}"></script>
+<!-- <script src="{{ asset('assets/plugins/sparklines/sparkline.js') }}"></script> -->
 <!-- JQVMap -->
 <script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
@@ -196,7 +143,8 @@
 <script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('assets/plugins/air-datepicker/air-datepicker.js') }}"></script> -->
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
@@ -204,13 +152,10 @@
 <!-- overlayScrollbars -->
 <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- DataTables  & Plugins -->
-<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables/dt/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables-bs4/js/moment.min.js') }}"></script>
+<!-- <script src="{{ asset('assets/plugins/datatables-bs4/js/moment.min.js') }}"></script> -->
 <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.dateTime.min.js') }}"></script>
-
-
-
 <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
@@ -222,54 +167,150 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
+<!-- <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script> -->
 {{-- menu export --}}
 <script>
 
 
     $(document).ready(function () {
+      $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
+          //jalankan function load_data diawal agar data ter-load
+          load_data();
+            //Iniliasi datepicker pada class input
+            $('.datepicker').datepicker({
+                todayBtn: 'linked',
+                dateFormat: 'dd/mm/yy',
+              autoclose: true, 
+              todayHighlight: true,
+            });
+
+            $('#filter').click(function () {
+                 var from_date = $('#from_date').val(); 
+                 var to_date = $('#to_date').val(); 
+                //alert(from_date)
+                if (from_date != '' && to_date != '') {
+                    $('#example1').DataTable().destroy();
+                    load_data(from_date, to_date);
+                    //alert(from_date)
+                } else {
+                    alert('kedua tanggal harus diisi');
+                }
+            });
+
+            $('#refresh').click(function () {
+                $('#from_date').val('');
+                $('#to_date').val('');
+                $('#example1').DataTable().destroy();
+                load_data();
+            });
+   function load_data(from_date = '', to_date = '') {
+    //alert(from_date)
       $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        
+        "responsive": true, "lengthChange": true, "autoWidth": true,
+        "processing": true,"serverSide": true, //aktifkan server-side
+        ajax: {
+                    url: "{{ route('stock.index') }}",
+                    data:{from_date:from_date, to_date:to_date}, //jangan lupa kirim parameter tanggal 
+                    type: "GET",
+                },
+             
+                columns: [{
+                        data: 'jenis',
+                        name: 'jenis'
+                    },
+                    {
+                        data: 'sandi_kantor',
+                        name: 'sandi_kantor'
+                    },
+                    {
+                        data: 'tanggal',
+                        name: 'tanggal'
+                    },
+                    {
+                        data: 'jml_stok_awal',
+                        name: 'jml_stok_awal'
+                    },
+                    {
+                        data: 'tambahan_stok',
+                        name: 'tambahan_stok'
+                    },
+                    {
+                        data: 'jml_digunakan',
+                        name: 'jml_digunakan'
+                    },
+                    {
+                        data: 'jml_rusak',
+                        name: 'jml_rusak'
+                    },
+                    {
+                        data: 'jml_hilang',
+                        name: 'jml_hilang'
+                    },
+                    {
+                        data: 'jml_stok_akhir',
+                        name: 'jml_stok_akhir'
+                    },
+                   
+
+                ],
+                order: [
+                    [0, 'desc']
+                ],
+       
+       
+        "lengthMenu": [
+        [10, 14, 28, -1],
+        [10, 14, 28, "All"]
+        ],
+        "dom": 'Bfrtip',
+      
         "buttons": [
                     {
                         extend:"copy",
-                        exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        }
+                        // exportOptions: {
+                        // columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        // }
                     },
                     {
                         extend:"csv",
-                        exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        }
+                        // exportOptions: {
+                        // columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        // }
                     },
                     {
                         extend:"excel",
                         title : "",
-                        exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        }
+                        // exportOptions: {
+                        // columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        // }
                     },
                     {
                         extend:"pdf",
                         title :"Laporan Stok Buku Tabungan dan Bilyet Deposito",
-                        exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        }
+                        // exportOptions: {
+                        // columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        // }
                     },
                     {
                         extend:"print",
                         title :"Laporan Stok Buku Tabungan dan Bilyet Deposito",
-                        exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                        }
+                        // exportOptions: {
+                        // columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        // }
                     },
+                        {
+                          extend:"pageLength"
+                        },
                     {
                         extend:"colvis"}
                 ]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      });
 
       $('#example2').DataTable({
 
@@ -281,10 +322,10 @@
         "autoWidth": true,
         "responsive": true,
       });
-
-
+    }//endfunctionloaddata
     });
-
+ 
 // Custom filtering function which will search data in column four between two values
 </script>
+
 @endpush

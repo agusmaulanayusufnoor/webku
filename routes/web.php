@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\AjaxController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +24,17 @@ Route::get('/', function () {
  Route::resource('user', UserController::class);
 
  //route stock
- Route::get('/stock',[StockController::class,'index'])->name('stock');
+ //Route::get('/stock',[StockController::class,'index'])->name('stock');
+ Route::get('stock', [StockController::class, 'index']);
  Route::get('/stock',[StockController::class,'store'])->name('stock');
+ Route::get('/fetch_data',[StockController::class,'fetch_data'])->name('fetch_data');
+
 //cari data stock
 Route::get('/search', [StockController::class, 'search'])->name('search');
+
+//route::get('/stock/fetch_data', [StockController::class,'fetch_data']);
+Route::post('/stock/add_data', [StockController::class,'add_data'])->name('stock.add_data');
+Route::post('/stock/update_data', [StockController::class,'update_data'])->name('stock.update_data');
+Route::post('/stock/delete_data', [StockController::class,'delete_data'])->name('stock.delete_data');
+
  Route::resource('stock', StockController::class);
