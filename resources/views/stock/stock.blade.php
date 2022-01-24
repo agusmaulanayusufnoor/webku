@@ -362,7 +362,7 @@
                     $('td', row).eq(0).html(index + 1);
                     },
         "responsive": true, "lengthChange": true, "autoWidth": true,
-        "processing": true,"serverSide": true, "deferRender": true,//aktifkan server-side
+        "processing": true,"serverSide": false, "deferRender": true,//aktifkan server-side
         ajax: {
                     url: "{{ route('stock.index') }}",
                     data:{from_date:from_date, to_date:to_date}, //jangan lupa kirim parameter tanggal
