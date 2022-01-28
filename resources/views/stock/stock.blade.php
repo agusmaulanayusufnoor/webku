@@ -377,8 +377,8 @@
                         name: 'jenis'
                     },
                     {
-                        data: 'kode_kantor_slik',
-                        name: 'kode_kantor_slik'
+                        data: 'kode_kantor',
+                        name: 'kode_kantor'
                     },
                     {
                         data: 'tanggal',

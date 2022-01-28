@@ -50,7 +50,7 @@ class StockController extends Controller
                      $stockdata = stock::join('kode_kantors', 'stocks.sandi_kantor', '=', 'kode_kantors.id')
                                         ->orderBy('tanggal', 'DESC')
                                         ->whereDate('tanggal',$tgl1)
-                                        ->get(['stocks.*','kode_kantors.kode_kantor_slik','kode_kantors.nama_kantor']);
+                                        ->get(['stocks.*','kode_kantors.kode_kantor','kode_kantors.nama_kantor']);
 
 
                  }
@@ -59,7 +59,7 @@ class StockController extends Controller
                      $stockdata = stock::join('kode_kantors', 'stocks.sandi_kantor', '=', 'kode_kantors.id')
                                         ->orderBy('tanggal', 'DESC')
                                         ->whereBetween('tanggal', [$tgl1, $tgl2])
-                                        ->get(['stocks.*','kode_kantors.kode_kantor_slik','kode_kantors.nama_kantor']);
+                                        ->get(['stocks.*','kode_kantors.kode_kantor','kode_kantors.nama_kantor']);
 
                  }
 
@@ -73,7 +73,7 @@ class StockController extends Controller
                 $stockdata = stock::all();
                 $stockdata = stock::join('kode_kantors', 'stocks.sandi_kantor', '=', 'kode_kantors.id')
                             ->orderBy('tanggal', 'DESC')
-                           ->get(['stocks.*','kode_kantors.kode_kantor_slik','kode_kantors.nama_kantor']);
+                           ->get(['stocks.*','kode_kantors.kode_kantor','kode_kantors.nama_kantor']);
 
 
             }
