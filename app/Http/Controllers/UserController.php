@@ -8,7 +8,7 @@ use App\Models\Kode_kantor;
 use App\Models\Level;
 use App\Models\User;
 use Crypt;
-
+use Session;
 
 class UserController extends Controller
 {
@@ -73,7 +73,7 @@ class UserController extends Controller
 
         //return back()->with('status', 'Data ditambah!');
        // return $request;
-
+        session()->flash('message','user '.$users->username.' ditambahkan');
         return redirect('user');
     }
 
@@ -155,7 +155,9 @@ class UserController extends Controller
     {
         //hapus data satu2
         $users = User::find($id);
+        
         $users->delete();
+        session()->flash('hapus','user sudah dihapus');
         return redirect('user');
     }
 }

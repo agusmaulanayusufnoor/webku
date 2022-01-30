@@ -19,8 +19,11 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
+  
+  <!-- Datatable -->
+  <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endpush
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -36,9 +39,9 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-             <a class="btn btn-primary" href="{{ url('user/create') }}" role="button">
+             <a class="btn btn-primary" href="{{ url('pelayanan/uploadba') }}" role="button">
                  <i class="far fa-plus-square nav-icon"></i>
-                 Tambah User
+                 Upload File
                  </a>
               </li>
               <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
@@ -50,10 +53,11 @@
 
     <!-- table -->
 
-    <section class="content">
+    
       <div class="container-fluid">
+      
         <div class="row justify-content-md-center">
-          <div class="col-md-8">
+          <div class="col-md-9">
           @if (session()->exists('message'))
             <div class="alert alert-success" role="alert">
             <strong>{{ session('message') }}</strong>
@@ -67,53 +71,41 @@
 <!-- tabel yg dipakai -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Data User</h3>
+                <h3 class="card-title">Downlod Berita Acara Kas</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
-                <table class="table table-striped">
+                <table id="example1" class="table table-striped table-bordered table-hover table-sm">
                   <thead class="text-center">
                     <tr>
                       <th style="width: 10px">No</th>
-                      <th>Username</th>
-                      <th>Nama</th>
-                      <th>Level</th>
                       <th>Kantor</th>
-                      <th>Ubah</th>
+                      <th>Tanggal Upload</th>
+                      <th>Periode Laporan Obox</th>
+                      <th>Download File</th>
                       <th>Hapus</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    @foreach($datas as $key=>$value)
-                    <tr>
+                  @foreach($databa as $key=>$value)
+                  <tr>
                       <td>
                             {{  $loop -> iteration }}
                       </td>
                       <td>
-                          {{  $value -> username }}
+                          {{  $value -> kantor->nama_kantor }}
+                      </td>
+                      <td class="text-center">
+                        {{  $value -> created_at->format('d/m/Y H:m:s')}}
                       </td>
                       <td>
-                          {{  $value -> name }}
+                          {{  $value -> namafile }}
                      </td>
                       <td>
-                        {{  $value -> level->level_divisi }}
-                      </td>
-
-                      <td class="text-center">
-                        {{  $value -> kantor->nama_kantor }}
-                      </td>
-
+                        <a href="{{ asset('fileba/'.$value -> file) }}">{{  $value -> file }}</a>
+                      </td>         
                       <td>
                       <div class="row justify-content-md-center">
-                        <a class="btn btn-primary btn-sm" href="{{ url('user/'.$value->id.'/edit') }}">
-                        <i class="fa fa-edit nav-icon" alt="ubah"></i>
-                        </a>
-
-                    </div>
-                        </td>
-                      <td>
-                      <div class="row justify-content-md-center">
-                        <form method="post" action="{{ url('user/'.$value->id) }}">
+                      <form method="post" action="{{ url('pelayanan/download/'.$value->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger btn-sm" type="submit">
@@ -124,8 +116,8 @@
 
                       </td>
                     </tr>
-                    @endforeach
-                  </tbody>
+
+                  @endforeach
                 </table>
               </div>
               <!-- /.card-body -->
@@ -141,7 +133,7 @@
       </div><!-- /.container-fluid -->
 </div>
     <!-- end tabel -->
-</section>
+
 
 @endsection
 @push('custom-js')
@@ -157,7 +149,7 @@
 <!-- ChartJS -->
 <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
-<script src="{{ asset('assets/plugins/sparklines/sparkline.js') }}"></script>
+<!-- <script src="{{ asset('assets/plugins/sparklines/sparkline.js') }}"></script> -->
 <!-- JQVMap -->
 <script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
@@ -168,11 +160,33 @@
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-<!-- Summernote -->
-<script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+
 <!-- overlayScrollbars -->
 <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- datatable -->
+<script src="{{ asset('assets/plugins/datatables/dt/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.dateTime.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 @endpush

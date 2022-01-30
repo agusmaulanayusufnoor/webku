@@ -55,10 +55,19 @@
     <!-- form tambah -->
   <div class="card card-primary">
     <div class="card-header mx-auto"  style="width: 360px; margin-top:30px">
-    <h3 class="text-center">Tambah User</h3>
+    <h4 class="text-center">Tambah User</h4>
     </div>
     <article class="card-body mx-auto" style="min-width: 400px;">
-
+    @if (session()->exists('message'))
+            <div class="alert alert-success" role="alert">
+            <strong>{{ session('message') }}</strong>
+            </div>
+          @endif
+          @if (session()->exists('hapus'))
+            <div class="alert alert-danger" role="alert">
+            <strong>{{ session('hapus') }}</strong>
+            </div>
+          @endif
 <form action="{{ url('user') }}" method="post">
   @csrf
 	<div class="form-group input-group">
@@ -132,8 +141,8 @@
         @enderror
     </div> <!-- form-group// -->
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block"> Simpan  </button>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary"> Simpan  </button>
     </div> <!-- form-group// -->
     @if (session('status'))
     <div class="alert alert-success">

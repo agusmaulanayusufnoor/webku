@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\UploadbaController;
+use App\Http\Controllers\UploadkreController;
 use App\Http\Controllers\AjaxController;
 use Yajra\DataTables\DataTables;
 /*
@@ -28,14 +30,19 @@ Route::get('/', function () {
  //Route::get('/stock',[StockController::class,'index'])->name('stock');
  Route::get('stock', [StockController::class, 'index']);
  Route::get('/stock',[StockController::class,'store'])->name('stock');
- Route::get('/fetch_data',[StockController::class,'fetch_data'])->name('fetch_data');
-
+ //Route::get('/fetch_data',[StockController::class,'fetch_data'])->name('fetch_data');
+ Route::resource('stock', StockController::class);
 //cari data stock
 Route::get('/search', [StockController::class, 'search'])->name('search');
 
-//route::get('/stock/fetch_data', [StockController::class,'fetch_data']);
-Route::post('/stock/add_data', [StockController::class,'add_data'])->name('stock.add_data');
-Route::post('/stock/update_data', [StockController::class,'update_data'])->name('stock.update_data');
-Route::post('/stock/delete_data', [StockController::class,'delete_data'])->name('stock.delete_data');
+ //route pelayanan
+ Route::get('/pelayanan/download',[UploadbaController::class,'index'])->name('download');
+ Route::get('/pelayanan/uploadba',[UploadbaController::class,'create'])->name('uploadba');
+ Route::post('/pelayanan/simpan-file',[UploadbaController::class,'store'])->name('simpan-file');
+ Route::delete('/pelayanan/download/{id}',[UploadbaController::class,'destroy'])->name('download');
 
- Route::resource('stock', StockController::class);
+  //route kredit
+  Route::get('/kredit/download',[UploadkreController::class,'index'])->name('download');
+  Route::get('/kredit/uploadkre',[UploadkreController::class,'create'])->name('uploadkre');
+  Route::post('/kredit/simpan-file',[UploadkreController::class,'store'])->name('simpan-file');
+  Route::delete('/kredit/download/{id}',[UploadkreController::class,'destroy'])->name('download');

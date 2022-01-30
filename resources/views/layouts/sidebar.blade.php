@@ -65,12 +65,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-plus-square nav-icon"></i>
                   <p>Tambah Stok</p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a href="/stock" class="nav-link">
                 <i class="nav-icon fas fa-database"></i>
@@ -78,15 +78,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{ url('pelayanan/uploadba') }}" class="nav-link">
                   <i class="fa fa-upload nav-icon"></i>
                   <p>Upload File</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="/pelayanan/download" class="nav-link">
                   <i class="fas fa-th nav-icon"></i>
-                  <p>Hasil Upload</p>
+                  <p>Download File</p>
                 </a>
               </li>
             </ul>
@@ -101,7 +101,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="pages/forms/general.html" class="nav-link">
+                    <a href="#" class="nav-link">
                       <i class="fa fa-upload nav-icon"></i>
                       <p>Upload File</p>
                     </a>
@@ -109,7 +109,7 @@
                   <li class="nav-item">
                     <a href="pages/forms/advanced.html" class="nav-link">
                       <i class="fas fa-th nav-icon"></i>
-                      <p>Hasil Upload</p>
+                      <p>Download File</p>
                     </a>
                   </li>
             </ul>
@@ -124,15 +124,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{ url('kredit/uploadkre') }}" class="nav-link">
                   <i class="fa fa-upload nav-icon"></i>
                   <p>Upload File</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="{{ url('kredit/download') }}" class="nav-link">
                   <i class="fas fa-th nav-icon"></i>
-                  <p>Hasil Upload</p>
+                  <p>Download File</p>
                 </a>
               </li>
             </ul>
