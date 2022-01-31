@@ -71,7 +71,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
-                <table class="table table-striped">
+                <table class="table table-striped table-sm">
                   <thead class="text-center">
                     <tr>
                       <th style="width: 10px">No</th>

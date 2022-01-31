@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
-  
+
   <!-- Datatable -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
@@ -53,9 +53,9 @@
 
     <!-- table -->
 
-    
+
       <div class="container-fluid">
-      
+
         <div class="row justify-content-md-center">
           <div class="col-md-12">
           @if (session()->exists('message'))
@@ -80,12 +80,12 @@
                   <tr>
                       <th></th>
                       <th>Kantor</th>
-                      <th>Tanggal Upload</th>
+                      {{-- <th>Tanggal Upload</th> --}}
                       <th>No Rekening</th>
                       <th>Kode Obox</th>
                       <th>Periode</th>
                       <th>Nama File</th>
-                      <th>Download File</th>
+                      <th></th>
                       <th></th>
                     </tr>
                   </tfoot>
@@ -93,28 +93,28 @@
                     <tr>
                       <th style="width: 10px">No</th>
                       <th>Kantor</th>
-                      <th>Tanggal Upload</th>
+                      {{-- <th>Tanggal Upload</th> --}}
                       <th>No Rekening</th>
                       <th>Kode Obox</th>
                       <th>Periode</th>
                       <th>Nama File</th>
-                      <th>Download File</th>
+                      <th>Download</th>
                       <th>Hapus</th>
                     </tr>
                   </thead>
-                  
+
                   <tbody>
                   @foreach($datakre as $key=>$value)
                   <tr>
-                      <td>
+                      <td style="width: 10px">
                             {{  $loop -> iteration }}
                       </td>
                       <td>
                           {{  $value -> kantor->nama_kantor }}
                       </td>
-                      <td class="text-center">
-                        {{  $value -> created_at->format('d/m/Y H:m:s')}}
-                      </td>
+                      {{-- <td class="text-center">
+                        {{  $value -> created_at->format('d/m/Y')}}
+                      </td> --}}
                       <td>
                           {{  $value -> no_rekening }}
                      </td>
@@ -128,8 +128,14 @@
                           {{  $value -> namafile }}
                      </td>
                       <td>
-                        <a href="{{ asset('filekre/'.$value -> file) }}">{{  $value -> file }}</a>
-                      </td>         
+                        <div class="row justify-content-md-center">
+                            <a href="{{ asset('filekre/'.$value -> file) }}">
+                                <button class="btn btn-outline-info btn-sm" type="button">
+                                    <i class="fa fa-download nav-icon" alt="hapus"></i>
+                                </button>
+                            </a>
+                        </div>
+                      </td>
                       <td>
                       <div class="row justify-content-md-center">
                       <form method="post" action="{{ url('kredit/download/'.$value->id) }}">
@@ -146,7 +152,7 @@
 
                   @endforeach
                   </tbody>
-                  
+
                 </table>
               </div>
               <!-- /.card-body -->
@@ -202,28 +208,28 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 
 <script>
-  // $(function () {
-  //   $("#example1").DataTable({
-  //     "responsive": true, "lengthChange": false, "autoWidth": false,
-  //     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-  //   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  //   $('#example2').DataTable({
-  //     "paging": true,
-  //     "lengthChange": false,
-  //     "searching": false,
-  //     "ordering": true,
-  //     "info": true,
-  //     "autoWidth": false,
-  //     "responsive": true,
-  //   });
-  // });
+//   $(function () {
+//     $("#example1").DataTable({
+//       "responsive": true, "lengthChange": false, "autoWidth": true,
+//       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+//     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+//     $('#example2').DataTable({
+//       "paging": true,
+//       "lengthChange": false,
+//       "searching": false,
+//       "ordering": true,
+//       "info": true,
+//       "autoWidth": false,
+//       "responsive": true,
+//     });
+//   });
   $(document).ready(function() {
     $('#example1').DataTable( {
-      
-      
+
+        "responsive": true,
         initComplete: function () {
-            this.api().columns([1,2,3,4,5,6,7]).every( function () {
-            
+            this.api().columns([1,2,3,4,5]).every( function () {
+
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo( $(column.footer()).empty() )
@@ -231,12 +237,12 @@
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
- 
+
                         column
                             .search( val ? '^'+val+'$' : '', true, false )
                             .draw();
                     } );
- 
+
                 column.data().unique().sort().each( function ( d, j ) {
                     select.append( '<option>'+d+'</option>' )
                 } );

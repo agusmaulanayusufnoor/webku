@@ -34,7 +34,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-              <h1 class="m-0">UPLOAD FILE BERITA ACARA KAS</h1> 
+              <h1 class="m-0">UPLOAD FILE BERITA ACARA KAS</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -53,14 +53,14 @@
 
     <!-- form tambah -->
     <div class="row">
-  <div class="col-sm-6">
+  <div class="col-md-6">
   <div class="card card-primary">
-  
-    <div class="card-header mx-auto"  style="width: 46%; margin-top:30px">
+
+    <div class="card-header mx-auto"  style="width: 54%; margin-top:30px">
     <h4 class="text-center">UPLOAD</h4>
     </div>
-    <div class="card-body mx-auto" style="width: 50%;">
-    
+    <div class="card-body mx-auto" style="width: 60%;">
+
       @if (session()->exists('message'))
             <div class="alert alert-success" role="alert">
             <strong>{{ session('message') }}</strong>
@@ -99,51 +99,51 @@
                 @enderror
             </div> <!-- form-group// -->
 
-          
+
 
             <div class="form-group input-group">
             <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-archive"></i> </span>
             </div>
             <div class="custom-file">
-                
+
                 <input name="file" id="exampleInputFile" class="custom-file-input" placeholder="" type="file">
                 <label class="custom-file-label" for="exampleInputFile">Pilih File</label>
             </div>
-                
+
                 @error('file')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div> <!-- form-group// -->
 
-            
+
             <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary"> Simpan  </button>
                 @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
-            
+
             <strong>{{ $message }}</strong>
             </div>
             @endif
             </div> <!-- form-group// -->
-            
-           
+
+
       </form>
-      
+
     </div><!-- card body// -->
-  
+
   </div> <!-- card.// -->
   </div> <!--tutup col -->
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <div class="card">
-      <div class="card-body" style="width: 50%;">
-      <label>Keterangan :</label> 
+      <div class="card-body" style="width: 80%;">
+      <label>Keterangan :</label>
       <p class="text-left">1. File yang di upload harus format file .zip (bukan .rar)</p>
       <p class="text-left">2. Didalam .zip harus ada satu file PDF yang sudah digabung</p>
-      <p class="text-left">3. File PDF bisa digabung <a href="https://www.ilovepdf.com/merge_pdf">disini</a></p>
-      <p class="text-left">4. Nama file harus nama kantor. contoh: cab-kpo.zip</p>
+      <p class="text-left">3. File PDF bisa digabung <a href="https://www.ilovepdf.com/merge_pdf" target="blank">disini</a></p>
+      <p class="text-left">4. Nama file harus nama kantor. contoh: cab-kpo.zip</p><br><br><br><br>
 
-     
+
       </div>
     </div>
 </div><!--tutup col -->

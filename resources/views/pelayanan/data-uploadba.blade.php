@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
-  
+
   <!-- Datatable -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
@@ -53,9 +53,9 @@
 
     <!-- table -->
 
-    
+
       <div class="container-fluid">
-      
+
         <div class="row justify-content-md-center">
           <div class="col-md-9">
           @if (session()->exists('message'))
@@ -101,8 +101,14 @@
                           {{  $value -> namafile }}
                      </td>
                       <td>
-                        <a href="{{ asset('fileba/'.$value -> file) }}">{{  $value -> file }}</a>
-                      </td>         
+                        <div class="row justify-content-md-center">
+                            <a href="{{ asset('fileba/'.$value -> file) }}">
+                                <button class="btn btn-outline-info btn-sm" type="button">
+                                    <i class="fa fa-download nav-icon" alt="hapus"></i>
+                                </button>
+                            </a>
+                        </div>
+                      </td>
                       <td>
                       <div class="row justify-content-md-center">
                       <form method="post" action="{{ url('pelayanan/download/'.$value->id) }}">

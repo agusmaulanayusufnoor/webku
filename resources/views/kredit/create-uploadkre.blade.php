@@ -34,7 +34,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-              <h1 class="m-0">UPLOAD FILE MAP KREDIT</h1> 
+              <h1 class="m-0">UPLOAD FILE MAP KREDIT</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -55,12 +55,12 @@
     <div class="row">
   <div class="col-sm-6">
   <div class="card card-primary">
-  
-    <div class="card-header mx-auto"  style="width: 46%; margin-top:30px">
+
+    <div class="card-header mx-auto"  style="width: 52%; margin-top:20px">
     <h4 class="text-center">UPLOAD</h4>
     </div>
-    <div class="card-body mx-auto" style="width: 50%;">
-    
+    <div class="card-body mx-auto" style="width: 60%;">
+
       @if (session()->exists('message'))
             <div class="alert alert-success" role="alert">
             <strong>{{ session('message') }}</strong>
@@ -93,7 +93,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-file-invoice-dollar"></i> </span>
             </div>
-                <input name="no_rekening" value="{{  old('no_rekening')  }}" class="form-control @error('no_rekening') is-invalid @enderror" placeholder="Norekening tanpa titik" 
+                <input name="no_rekening" value="{{  old('no_rekening')  }}" class="form-control @error('no_rekening') is-invalid @enderror" placeholder="Norekening tanpa titik"
                 type="text" onkeypress="return /['0-9','K']/i.test(event.key)" maxlength="12" oninput="this.value = this.value.toUpperCase()">
                 @error('no_rekening')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -109,7 +109,7 @@
                      <option value="CR008" {{ old('kode_obox') == 'CR008' ? 'selected' : '' }}>CR008</option>
                      <option value="CR009" {{ old('kode_obox') == 'CR009' ? 'selected' : '' }}>CR009</option>
                   </select>
-             
+
             </div><!-- form-group// -->
           <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -124,54 +124,54 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-archive"></i> </span>
             </div>
-                <input name="namafile" value="{{  old('namafile')  }}" class="form-control @error('namafile') is-invalid @enderror" 
+                <input name="namafile" value="{{  old('namafile')  }}" class="form-control @error('namafile') is-invalid @enderror"
                 placeholder="Nama File : 'nama_nasabah'" type="text" oninput="this.value = this.value.toUpperCase()">
                 @error('namafile')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div> <!-- form-group// -->
-          
+
 
             <div class="form-group input-group">
             <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-archive"></i> </span>
             </div>
             <div class="custom-file">
-                
+
                 <input name="file" id="exampleInputFile" class="custom-file-input" placeholder="" type="file">
                 <label class="custom-file-label" for="exampleInputFile">Pilih File</label>
             </div>
-                
+
                 @error('file')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div> <!-- form-group// -->
 
-            
+
             <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary"> Simpan  </button>
                 @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
-            
+
             <strong>{{ $message }}</strong>
             </div>
             @endif
             </div> <!-- form-group// -->
-            
-           
+
+
       </form>
-      
+
     </div><!-- card body// -->
-  
+
   </div> <!-- card.// -->
   </div> <!--tutup col -->
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-      <label>Keterangan :</label> 
+      <label>Keterangan :</label>
       <p class="text-left">1. File yang di upload harus format file .zip (bukan .rar)</p>
       <p class="text-left">2. Didalam .zip harus ada satu file PDF yang sudah digabung</p>
-      <p class="text-left">3. File PDF bisa digabung <a href="https://www.ilovepdf.com/merge_pdf">disini</a></p>
+      <p class="text-left">3. File PDF bisa digabung <a href="https://www.ilovepdf.com/merge_pdf" target="blank">disini</a></p>
       <p class="text-left">4. Format nama file : nama_nasabah.zip contoh: 'UDIN.zip'</p>
       <p class="text-left">5. isi no rekening tanpa titik</p>
       <p class="text-left">6. kode obox : <br>
@@ -179,8 +179,8 @@
                                         - CR008 = File debitur penurunan baki debet terbesar. <br>
                                         - CR009 = File debitur perubahan kolektibilitas berdasarkan baki debet terbesar.
       </p>
+      <br><br><br>
 
-     
       </div>
     </div>
 </div><!--tutup col -->
