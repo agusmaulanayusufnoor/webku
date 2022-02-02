@@ -105,7 +105,7 @@
 
                       <td>
                       <div class="row justify-content-md-center">
-                        <a class="btn btn-primary btn-sm" href="{{ url('user/'.$value->id.'/edit') }}">
+                        <a class="btn btn-primary btn-xs" href="{{ url('user/'.$value->id.'/edit') }}">
                         <i class="fa fa-edit nav-icon" alt="ubah"></i>
                         </a>
 
@@ -116,7 +116,7 @@
                         <form method="post" action="{{ url('user/'.$value->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger btn-sm" type="submit">
+                            <button class="btn btn-danger btn-xs" type="submit">
                                 <i class="fa fa-minus-circle nav-icon" alt="hapus"></i>
                             </button>
                         </form>

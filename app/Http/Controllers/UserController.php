@@ -7,7 +7,8 @@ use Illuminate\Validation\Validator;
 use App\Models\Kode_kantor;
 use App\Models\Level;
 use App\Models\User;
-use Crypt;
+use Illuminate\Support\Facades\Hash;
+
 use Session;
 
 class UserController extends Controller
@@ -68,7 +69,7 @@ class UserController extends Controller
         $users->username    = $request->username;
         $users->level_id    = $request->level_id;
         $users->kantor_id   = $request->kantor_id;
-        $users->password    = Crypt::encrypt($request->password);
+        $users->password    = Hash::make($request->password);
         $users->save();
 
         //return back()->with('status', 'Data ditambah!');
@@ -76,7 +77,10 @@ class UserController extends Controller
         session()->flash('message','user '.$users->username.' ditambahkan');
         return redirect('user');
     }
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display the specified resource.
      *
@@ -122,12 +126,12 @@ class UserController extends Controller
             'name' => 'required',
             'level_id' => 'required',
             'kantor_id' => 'required',
-            'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|min:6'
+            'password' => 'required', 'string', 'min:8', 'confirmed',
+            'password_confirmation'  => 'required', 'string', 'min:8',
         ],[
             'username.required' => 'username harus diisi',
             'name.required' => 'nama lengkap harus diisi',
-            'password.required' => 'password minimal 6 huruf'
+            'password.required' => 'password minimal 8 huruf',
         ]);
         //return $request;
         //proses insert data
@@ -136,7 +140,7 @@ class UserController extends Controller
         $users->username    = $request->username;
         $users->level_id    = $request->level_id;
         $users->kantor_id   = $request->kantor_id;
-        $users->password    = Crypt::encrypt($request->password);
+        $users->password    = Hash::make($request->password);
         $users->save();
 
         //return back()->with('status', 'Data ditambah!');
@@ -155,7 +159,7 @@ class UserController extends Controller
     {
         //hapus data satu2
         $users = User::find($id);
-        
+
         $users->delete();
         session()->flash('hapus','user sudah dihapus');
         return redirect('user');

@@ -9,8 +9,11 @@
         <a href="/" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Keluar</a>
-      </li>
+        <a href="#" class="nav-link">
+            Hai... {{ Auth::user()->name }}
+        </a>
+    </li>
+
     </ul>
 
     <!-- Right navbar links -->
@@ -48,6 +51,15 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+
+        <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();""><i class="fa fa-sign-out-alt"></i>Keluar</a>
+            <form class="form-inline" id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+            </form>
+        </div>
+    </li>
     </ul>
   </nav>
   <!-- /.navbar -->

@@ -9,6 +9,21 @@ use Session;
 
 class UploadbaController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +61,7 @@ class UploadbaController extends Controller
         //dd($request->all());
         //validasi form
         $request->validate([
-            
+
             'namafile' => 'required',
             'kantor_id' => 'required',
             'file' => 'required|mimes:zip'
@@ -58,7 +73,7 @@ class UploadbaController extends Controller
         ]);
 
         $nm         = $request->file;
-        
+
         $uploadfile = new Uploadba;
         $uploadfile->kantor_id  = $request->kantor_id;
         $uploadfile->namafile   = $request->namafile;
@@ -67,8 +82,8 @@ class UploadbaController extends Controller
         $tahun      = substr($uploadfile->namafile,19);
         $arr        = array($tahun,$bulan,$hari);
         $periode    = implode("",$arr);
-        $namafile   = "01020101.600324.OP001UN-A.".$periode.".00".$request->kantor_id.".".$nm->getClientOriginalName();   
-        $uploadfile->file       = $namafile; 
+        $namafile   = "01020101.600324.OP001UN-A.".$periode.".00".$request->kantor_id.".".$nm->getClientOriginalName();
+        $uploadfile->file       = $namafile;
         //masukan ke folder file
         $nm->move(public_path().'/fileba', $namafile);
         $uploadfile->save();
@@ -122,7 +137,7 @@ class UploadbaController extends Controller
         //hapus data satu2
         $databa     = Uploadba::find($id);
         $databa->delete();
-        
+
         $file = public_path("fileba/".$databa->file);
         //dd($id);
         if (! file_exists($file)){
@@ -133,9 +148,9 @@ class UploadbaController extends Controller
         session()->flash('hapus','file sudah dihapus');
         return redirect('pelayanan/download');
         }
-        
 
-       
+
+
 
         //Image::where("id", $image->id)->delete();
     }

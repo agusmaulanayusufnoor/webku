@@ -31,6 +31,11 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">PT BPR KARYA UTAMA JABAR</h1>
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

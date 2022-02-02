@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UploadbaController;
 use App\Http\Controllers\UploadkreController;
-use App\Http\Controllers\AjaxController;
-use Yajra\DataTables\DataTables;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +19,17 @@ use Yajra\DataTables\DataTables;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// });
+Route::get('/',[LoginController::class,'showLoginForm'])->name('showLoginForm');
+Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 //route user
- Route::get('/user',[UserController::class,'index'])->name('user');
- Route::get('/user',[UserController::class,'store'])->name('user');
- Route::resource('user', UserController::class);
+Route::get('/user',[UserController::class,'index'])->name('user');
+Route::get('/user',[UserController::class,'store'])->name('user');
+Route::resource('user', UserController::class);
+
 
  //route stock
  //Route::get('/stock',[StockController::class,'index'])->name('stock');
@@ -46,3 +51,7 @@ Route::get('/search', [StockController::class, 'search'])->name('search');
   Route::get('/kredit/uploadkre',[UploadkreController::class,'create'])->name('uploadkre');
   Route::post('/kredit/simpan-file',[UploadkreController::class,'store'])->name('simpan-file');
   Route::delete('/kredit/download/{id}',[UploadkreController::class,'destroy'])->name('download');
+Auth::routes();
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

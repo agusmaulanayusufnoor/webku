@@ -130,7 +130,7 @@
                       <td>
                         <div class="row justify-content-md-center">
                             <a href="{{ asset('filekre/'.$value -> file) }}">
-                                <button class="btn btn-outline-info btn-sm" type="button">
+                                <button class="btn btn-outline-info btn-xs" type="button">
                                     <i class="fa fa-download nav-icon" alt="hapus"></i>
                                 </button>
                             </a>
@@ -141,7 +141,7 @@
                       <form method="post" action="{{ url('kredit/download/'.$value->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger btn-sm" type="submit">
+                            <button class="btn btn-danger btn-xs" type="submit">
                                 <i class="fa fa-minus-circle nav-icon" alt="hapus"></i>
                             </button>
                         </form>

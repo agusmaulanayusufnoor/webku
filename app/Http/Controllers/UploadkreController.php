@@ -9,6 +9,21 @@ use Session;
 
 class UploadkreController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     /**
      * Display a listing of the resource.
      *
@@ -61,8 +76,8 @@ class UploadkreController extends Controller
             'file.mimes' => 'file yang di upload harus berbentuk .zip'
         ]);
 
-        
-        
+
+
         $uploadfile = new Uploadkre;
         $uploadfile->kantor_id      = $request->kantor_id;
         $uploadfile->no_rekening    = $request->no_rekening;
@@ -75,10 +90,10 @@ class UploadkreController extends Controller
         $arr        = array($tahun,$bulan,$hari);
         $periode    = implode("",$arr);
         $nm         = $request->file;
-        $namafile   = "01020101.600324.".$uploadfile->kode_obox."UN-A.".$periode.".".$uploadfile->no_rekening.".".$nm->getClientOriginalName();   
-        $uploadfile->file       = $namafile; 
+        $namafile   = "01020101.600324.".$uploadfile->kode_obox."UN-A.".$periode.".".$uploadfile->no_rekening.".".$nm->getClientOriginalName();
+        $uploadfile->file       = $namafile;
         //masukan ke folder file
-        
+
         $nm->move(public_path().'/filekre', $namafile);
         $uploadfile->save();
         session()->flash('message','file sudah diupload');
@@ -131,7 +146,7 @@ class UploadkreController extends Controller
         //hapus data satu2
         $datakre     = Uploadkre::find($id);
         $datakre->delete();
-        
+
         $file = public_path("filekre/".$datakre->file);
         //dd($id);
         if (! file_exists($file)){
