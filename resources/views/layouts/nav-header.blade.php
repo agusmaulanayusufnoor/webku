@@ -9,9 +9,11 @@
         <a href="/" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
+        <div style="text-transform:capitalize;">
         <a href="#" class="nav-link">
             Hai... {{ Auth::user()->name }}
         </a>
+        </div>
     </li>
 
     </ul>

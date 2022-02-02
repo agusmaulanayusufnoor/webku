@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -45,4 +48,20 @@ class LoginController extends Controller
     {
         return 'username';
     }
+    protected function validateLogin(Request $request)
+    {
+    
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
+    }
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+           
+            $this->username() => [trans('User atau Password Salah')],
+        ]);
+    }
+    
 }
