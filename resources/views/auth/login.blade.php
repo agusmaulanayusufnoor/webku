@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-               
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="wrapper">
@@ -13,8 +13,8 @@
                             <form class="p-3 mt-3">
                                 <div class="form-field d-flex align-items-center">
                                     <span class="far fa-user"></span>
-                                    <input type="text" name="username" id="username" placeholder="Username" 
-                                    class="@error('username') is-invalid @enderror" value="{{ old('username') }}" 
+                                    <input type="text" name="username" id="username" placeholder="Username"
+                                    class="@error('username') is-invalid @enderror" value="{{ old('username') }}"
                                     required autocomplete="username">
                                     @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -32,12 +32,12 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                
-                                </div> 
+
+                                </div>
                                 <button type="submit" class="btn mt-3"><strong class="bi bi-box-arrow-in-right"> Login</strong></button>
-                               
+
                             </form>
-                            <div class="text-center fs-6"> <a href="{{ route('password.request') }}">Forget password?</a> or <a href="{{ route('register') }}">Sign up</a> </div> 
+                            {{-- <div class="text-center fs-6"> <a href="{{ route('password.request') }}">Forget password?</a> or <a href="{{ route('register') }}">Sign up</a> </div>  --}}
                         </div>
 
                     </form>

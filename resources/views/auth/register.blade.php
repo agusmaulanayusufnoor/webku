@@ -61,7 +61,7 @@
                                     <option value="2">Pelayanan</option>
                                     <option value="3">Kredit</option>
                                     <option value="4">Akunting</option>
-                                    <option value="5">SDM Pusat</option>
+                                    <option value="5">Umum</option>
                                 </select>
                                 @error('level_id')
                                     <span class="invalid-feedback" role="alert">

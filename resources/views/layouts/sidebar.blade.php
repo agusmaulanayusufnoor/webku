@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
       <img src="{{ asset('') }}assets/dist/img/logo-bprku.jpeg" alt="BPRKU Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">BPRKU APPS</span>
+      <span class="brand-text font-weight-light">BPRKU E-Box</span>
     </a>
 
     <!-- Sidebar -->
@@ -33,29 +33,36 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-              <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                User
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('user/create') }}" class="nav-link">
-                  <i class="far fa-plus-square nav-icon"></i>
-                  <p>Tambah User</p>
+            {{-- menu user --}}
+            @if (auth()->user()->level_id==1)
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    User
+                    <i class="fas fa-angle-left right"></i>
+                </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="/user" class="nav-link">
-                  <i class="far fa-id-badge nav-icon"></i>
-                  <p>Data User</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+                <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                        <a href="{{ url('user/create') }}" class="nav-link">
+                        <i class="far fa-plus-square nav-icon"></i>
+                        <p>Tambah User</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/user" class="nav-link">
+                        <i class="far fa-id-badge nav-icon"></i>
+                        <p>Data User</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
+            @if ((auth()->user()->level_id==1) or auth()->user()->level_id==2)
+          {{-- menu pelayanan --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -91,29 +98,9 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-archive"></i>
-              <p>
-              Akunting
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="fa fa-upload nav-icon"></i>
-                      <p>Upload File</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="pages/forms/advanced.html" class="nav-link">
-                      <i class="fas fa-th nav-icon"></i>
-                      <p>Download File</p>
-                    </a>
-                  </li>
-            </ul>
-          </li>
+          @endif
+          @if ((auth()->user()->level_id==1) or auth()->user()->level_id==3)
+          {{-- menu kredit --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
@@ -137,6 +124,61 @@
               </li>
             </ul>
           </li>
+          @endif
+
+          @if ((auth()->user()->level_id==1) or auth()->user()->level_id==4)
+          {{-- menu akunting --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-archive"></i>
+              <p>
+              Akunting
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="fa fa-upload nav-icon"></i>
+                      <p>Upload File</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/forms/advanced.html" class="nav-link">
+                      <i class="fas fa-th nav-icon"></i>
+                      <p>Download File</p>
+                    </a>
+                  </li>
+            </ul>
+          </li>
+          @endif
+
+          @if ((auth()->user()->level_id==1) or auth()->user()->level_id==5)
+          {{-- menu umum--}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-mail-bulk"></i>
+              <p>
+             Umum
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="fa fa-upload nav-icon"></i>
+                      <p>Upload File</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/forms/advanced.html" class="nav-link">
+                      <i class="fas fa-th nav-icon"></i>
+                      <p>Download File</p>
+                    </a>
+                  </li>
+            </ul>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

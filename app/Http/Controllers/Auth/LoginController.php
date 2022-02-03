@@ -36,6 +36,7 @@ class LoginController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -50,7 +51,7 @@ class LoginController extends Controller
     }
     protected function validateLogin(Request $request)
     {
-    
+
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
@@ -59,9 +60,9 @@ class LoginController extends Controller
     protected function sendFailedLoginResponse(Request $request)
     {
         throw ValidationException::withMessages([
-           
+
             $this->username() => [trans('User atau Password Salah')],
         ]);
     }
-    
+
 }
