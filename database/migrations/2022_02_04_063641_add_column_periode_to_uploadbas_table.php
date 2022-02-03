@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnKantorIdToUsersTable extends Migration
+class AddColumnPeriodeToUploadbasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddColumnKantorIdToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->integer('kantor_id');
+        Schema::table('uploadbas', function (Blueprint $table) {
+            $table->string('periode',30)->after('namafile');
         });
     }
 
@@ -26,9 +25,9 @@ class AddColumnKantorIdToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('uploadbas', function (Blueprint $table) {
             //
-            $table->dropColumn('kantor_id');
+            $table->dropColumn('periode');
         });
     }
 }

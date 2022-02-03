@@ -75,30 +75,27 @@
 				@endif
       <form action="{{ url('/pelayanan/simpan-file') }}" method="post" enctype="multipart/form-data">
           @csrf
-          <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-            </div>
-            <select name="kantor_id" class="form-control @error('kantor_id') is-invalid @enderror">
-              <option value=""> Pilih Kantor</option>
-            @foreach ($kantors as $kode)
-                  <option value="{{ $kode->id }}" {{ old('kantor_id') == $kode->id ? 'selected' : '' }}>{{ $kode->nama_kantor }}</option>
-                  @endforeach
-            </select>
-                @error('kantor_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-          </div> <!-- form-group end.// -->
+      
+            <input type="hidden" name="kantor_id" value={{auth()->user()->kantor_id}}></input>
+      
           <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
             </div>
-                <input id="reservation" name="namafile" value="" class="form-control @error('namafile') is-invalid @enderror" placeholder="Periode Laporan Obox" type="text">
+                <input name="namafile" value="" class="form-control @error('namafile') is-invalid @enderror" placeholder="Nama File" type="text">
                 @error('namafile')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div> <!-- form-group// -->
-
+            <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+            </div>
+                <input id="reservation" name="periode" value="" class="form-control @error('periode') is-invalid @enderror" placeholder="Periode Laporan Obox" type="text">
+                @error('periode')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div> <!-- form-group// -->
 
 
             <div class="form-group input-group">

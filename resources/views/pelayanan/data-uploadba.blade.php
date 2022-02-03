@@ -81,6 +81,7 @@
                       <th style="width: 10px">No</th>
                       <th>Kantor</th>
                       <th>Tanggal Upload</th>
+                      <th>Nama File</th>
                       <th>Periode Laporan Obox</th>
                       <th>Download File</th>
                       <th>Hapus</th>
@@ -99,6 +100,9 @@
                       </td>
                       <td>
                           {{  $value -> namafile }}
+                     </td>
+                     <td>
+                          {{  $value -> periode }}
                      </td>
                       <td>
                         <div class="row justify-content-md-center">
