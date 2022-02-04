@@ -12,7 +12,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}"> --}}
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
@@ -20,7 +20,7 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}"> --}}
 @endpush
 @section('content')
 
@@ -75,9 +75,9 @@
 				@endif
       <form action="{{ url('/pelayanan/simpan-file') }}" method="post" enctype="multipart/form-data">
           @csrf
-      
+
             <input type="hidden" name="kantor_id" value={{auth()->user()->kantor_id}}></input>
-      
+
           <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
@@ -161,20 +161,20 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script> --}}
 
 <!-- JQVMap -->
-<script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
 <!-- jQuery Knob Chart -->
-<script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script> --}}
 <!-- daterangepicker -->
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script> --}}
 <!-- Summernote -->
-<script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script> --}}
 <!-- overlayScrollbars -->
 <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 

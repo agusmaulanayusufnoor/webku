@@ -4,15 +4,15 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('') }}assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"> --}}
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}"> --}}
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
@@ -20,13 +20,9 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}"> --}}
 @endpush
 @section('content')
-
-
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -75,7 +71,7 @@
 				@endif
       <form action="{{ url('/kredit/simpan-file') }}" method="post" enctype="multipart/form-data">
           @csrf
-          <div class="form-group input-group">
+          {{-- <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-building"></i> </span>
             </div>
@@ -88,7 +84,9 @@
                 @error('kantor_id')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-          </div> <!-- form-group end.// -->
+          </div> <!-- form-group end.// --> --}}
+          <input type="hidden" name="kantor_id" value={{auth()->user()->kantor_id}}></input>
+
           <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-file-invoice-dollar"></i> </span>
@@ -158,7 +156,6 @@
             @endif
             </div> <!-- form-group// -->
 
-
       </form>
 
     </div><!-- card body// -->
@@ -188,7 +185,6 @@
 
 </div>
 <!--container end.//-->
-
 @endsection
 @push('custom-js')
 
@@ -201,25 +197,25 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script> --}}
 
 <!-- JQVMap -->
-<script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script> --}}
 <!-- Summernote -->
-<script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script> --}}
 <!-- overlayScrollbars -->
 <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!-- <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script> -->
+{{-- <!-- <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script> --> --}}
 
 <script>
  $(".custom-file-input").on("change", function() {
