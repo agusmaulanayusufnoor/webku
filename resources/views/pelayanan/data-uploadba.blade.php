@@ -71,10 +71,11 @@
 <!-- tabel yg dipakai -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Downlod Berita Acara Kas</h3>
+                <h3 class="card-title">Downlod File Berita Acara Kas</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
+                <div class="d-flex justify-content-center">
                 <table id="example1" class="table table-striped table-bordered table-hover table-sm">
                   <thead class="text-center">
                     <tr>
@@ -128,6 +129,7 @@
                     </tr>
 
                   @endforeach
+                </div>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -185,7 +187,7 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "responsive": true, "lengthChange": true, "autoWidth": false,
     });
     $('#example2').DataTable({
       "paging": true,

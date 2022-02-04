@@ -2,13 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AdminhomeController;
-use App\Http\Controllers\UserhomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UploadbaController;
 use App\Http\Controllers\UploadkreController;
+use App\Http\Controllers\UploadakController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,5 +59,14 @@ Route::group(['middleware' => ['auth', 'ceklevel:1,3']],function () {
    Route::post('/kredit/simpan-file',[UploadkreController::class,'store'])->name('simpan-file');
    Route::delete('/kredit/download/{id}',[UploadkreController::class,'destroy'])->name('download');
  });
+
+ //admin dan user akunting
+Route::group(['middleware' => ['auth', 'ceklevel:1,4']],function () {
+    //route akunting
+    Route::get('/akunting/download',[UploadakController::class,'index'])->name('download');
+    Route::get('/akunting/uploadak',[UploadakController::class,'create'])->name('uploadkre');
+    Route::post('/akunting/simpan-file',[UploadakController::class,'store'])->name('simpan-file');
+    Route::delete('/akunting/download/{id}',[UploadakController::class,'destroy'])->name('download');
+  });
 
 
