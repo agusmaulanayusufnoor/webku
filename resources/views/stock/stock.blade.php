@@ -419,12 +419,13 @@
                 ],
 
         "lengthMenu": [
-        [14, 28, -1],
-        [14, 28, "All"]
+        [14, 140, -1],
+        [14, 140, "All"]
         ],
-        "dom": 'Bfrtip',
+        "dom": 'Blfrtip',
 
         "buttons": [
+            
                     {
                         extend:"copy",
                         exportOptions: {
