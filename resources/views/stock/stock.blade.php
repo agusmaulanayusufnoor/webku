@@ -183,34 +183,34 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="jml_stok_awal" name="jml_stok_awal"
-                                        placeholder="Jumlah Stok Awal" value="" required>
+                                        placeholder="Jumlah Stok Awal" onkeypress="return /['0-9']/i.test(event.key)" value="" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="tambahan_stok" name="tambahan_stok"
-                                        placeholder="Tambahan Stok" value="" required>
+                                        placeholder="Tambahan Stok" onkeypress="return /['0-9']/i.test(event.key)" value="" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="jml_digunakan" name="jml_digunakan"
-                                        placeholder="Jumlah Digunakan" value="" required>
+                                        placeholder="Jumlah Digunakan" onkeypress="return /['0-9']/i.test(event.key)" value="" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="jml_rusak" name="jml_rusak"
-                                        placeholder="Jumlah Rusak" value="" required>
+                                        placeholder="Jumlah Rusak" onkeypress="return /['0-9']/i.test(event.key)" value="" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="jml_hilang" name="jml_hilang"
-                                        placeholder="Jumlah Hilang" value="" required>
+                                        placeholder="Jumlah Hilang" onkeypress="return /['0-9']/i.test(event.key)" value="" required>
                                     </div>
                                 </div>
                                 <!-- jumlah stok akhir dihidden dan dijumlahkan -->
