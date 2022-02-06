@@ -362,7 +362,7 @@
                     $('td', row).eq(0).html(index + 1);
                     },
         "responsive": true, "lengthChange": true, "autoWidth": true,
-        "processing": true,"serverSide": false, "deferRender": true,//aktifkan server-side
+        "processing": true,"serverSide": true, "deferRender": true,//aktifkan server-side
         ajax: {
                     url: "{{ route('stock.index') }}",
                     data:{from_date:from_date, to_date:to_date}, //jangan lupa kirim parameter tanggal
@@ -448,14 +448,14 @@
                         extend:"pdf",
                         title :"Laporan Stok Buku Tabungan dan Bilyet Deposito",
                         exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
                         }
                     },
                     {
                         extend:"print",
                         title :"Laporan Stok Buku Tabungan dan Bilyet Deposito",
                         exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                        columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
                         }
                     },
                         {
@@ -531,6 +531,7 @@
                                 success ')}}',
                                 position: 'topRight'
                             });
+                          
                         },
                         error: function (data) { //jika error tampilkan error pada console
                             console.log('Error:', data);

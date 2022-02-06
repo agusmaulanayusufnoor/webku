@@ -8,6 +8,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\UploadbaController;
 use App\Http\Controllers\UploadkreController;
 use App\Http\Controllers\UploadakController;
+use App\Http\Controllers\TelegramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ use App\Http\Controllers\UploadakController;
 // });
 Route::get('/',[LoginController::class,'showLoginForm'])->name('showLoginForm');
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+
+Route::post('/sendchat',[TelegramController::class,'sendchat'])->name('sendchat');
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -35,6 +38,9 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']],function () {
     Route::get('/user',[UserController::class,'index'])->name('user');
     Route::get('/user',[UserController::class,'store'])->name('user');
     Route::resource('user', UserController::class);
+
+    //route telegram
+    
 });
 //admin dan user pelayanan
 Route::group(['middleware' => ['auth', 'ceklevel:1,2']],function () {

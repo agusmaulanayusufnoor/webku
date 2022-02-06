@@ -79,9 +79,9 @@ class StockController extends Controller
             }
             return datatables()->of($stockdata)
                         ->addColumn('action', function($data){
-                            $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm edit-post"><i class="far fa-edit"></i></a>';
+                            $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-primary btn-xs edit-post"><i class="far fa-edit"></i></a>';
                             $button .= '&nbsp;&nbsp;';
-                            $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>';
+                            $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-xs"><i class="far fa-trash-alt"></i></button>';
                             return $button;
                         })
                         ->rawColumns(['action'])
@@ -91,7 +91,7 @@ class StockController extends Controller
        //return view('stock.stock');
        return view('stock.stock', compact('stockdata','stock_jenis','kantors',));
        //return response()->json($stockdata);
-
+        
        //
        //return $stockdata;
     }
@@ -145,7 +145,7 @@ class StockController extends Controller
                         'jml_hilang'        =>  $request->jml_hilang,
                         'jml_stok_akhir'    =>  $request->jml_stok_akhir
                     ]);
-
+                    
         return response()->json($post);
     }
 
@@ -204,67 +204,5 @@ class StockController extends Controller
         return response()->json($hapusstock);
     //    return redirect('stock');
     }
-    // function fetch_data(Request $request)
-    // {
-    //     $stock_jenis     = Stock_jenis::all();
-    //    $kantors         = Kode_kantor_slik::all();
-    //    $stockdata       = stock::all();
-    //     if($request->ajax())
-    //     {
-    //         //$data = stock::all();
-    //         $data = DB::table('stocks')->orderBy('id','desc')->get();
-    //         //dd($data);
-    //        echo json_encode($data);
-
-    //     }
-    //     return response()->json($data);
-    // }
-    // function add_data(Request $request)
-    // {
-    //     if($request->ajax())
-    //     {
-    //         $data = array(
-    //             'jenis'             =>  $request->jenis,
-    //             'sandi_kantor'      =>  $request->sandi_kantor,
-    //             'tanggal'           =>  $request->tanggal,
-    //             'jml_stok_awal'     =>  $request->jml_stok_awal,
-    //             'tambahan_stok'     =>  $request->tambahan_stok,
-    //             'jml_digunakan'     =>  $request->jml_digunakan,
-    //             'jml_rusak'         =>  $request->jml_rusak,
-    //             'jml_hilang'        =>  $request->jml_hilang,
-    //             'jml_stok_akhir'    =>  $request->jml_stok_akhir
-
-    //         );
-    //         $id = DB::table('stocks')->insert($data);
-    //         if($id > 0)
-    //         {
-    //             echo '<div class="alert alert-success">Data Ditambahkan</div>';
-    //         }
-    //     }
-    // }
-
-    // function update_data(Request $request)
-    // {
-    //     if($request->ajax())
-    //     {
-    //         $data = array(
-    //             $request->column_name       =>  $request->column_value
-    //         );
-    //         DB::table('stocks')
-    //             ->where('id', $request->id)
-    //             ->update($data);
-    //         echo '<div class="alert alert-success">Data Diubah</div>';
-    //     }
-    // }
-
-    // function delete_data(Request $request)
-    // {
-    //     if($request->ajax())
-    //     {
-    //         DB::table('stocks')
-    //             ->where('id', $request->id)
-    //             ->delete();
-    //         echo '<div class="alert alert-success">Data Dihapus</div>';
-    //     }
-    // }
+   
 }

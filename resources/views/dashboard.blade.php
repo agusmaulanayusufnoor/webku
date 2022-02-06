@@ -8,11 +8,11 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"> -->
   <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}"> -->
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}"> -->
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
@@ -59,8 +59,52 @@
         <!-- content -->
         {{-- @include('layouts.content') --}}
         @if (auth()->user()->level_id==1)
-            <h4><marquee behavior="scroll" direction="left" scrollamount="10">
-                => disini content untuk admin</marquee></h4>
+          <div class="row">
+            <div class="col-md-4">
+<!-- DIRECT CHAT -->
+            <div class="card card-success direct-chat direct-chat-primary">
+                    <div class="card-header">
+                      <h3 class="card-title">Chat ke Telegram Eboxku</h3>
+                      <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                        <i class="fas fa-comments"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <form action="{{ url('/sendchat') }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                        <textarea name="pesan" id="pesan" class="form-control" rows="3" placeholder="Chat disini..."></textarea>
+                          
+                        </div>
+                        <span class="form-group">
+                            
+                            <button type="submit" class="btn btn-success btn-sm float-right"><i class="fas fa-paper-plane"></i> Kirim</button>
+                            
+                          </span>
+                          
+                      </form>
+                     
+                    </div>
+                          @if(session()->has('message'))
+                            <div class="alert alert-info" role="alert">
+                            <p class="fa fa-comment"></p> {{ session()->get('message') }}
+                            </div>
+                          @endif
+                    <!-- /.card-footer-->
+                  </div>
+
+            </div><!-- col-->
+          </div><!-- row-->
+     
         @else
         <h4><marquee behavior="scroll" direction="left" scrollamount="10">
             => disini content untuk user</marquee></h4>
@@ -82,12 +126,12 @@
 <!-- ChartJS -->
 <!-- <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script> -->
 <!-- Sparkline -->
-<script src="{{ asset('assets/plugins/sparklines/sparkline.js') }}"></script>
+<!-- <script src="{{ asset('assets/plugins/sparklines/sparkline.js') }}"></script> -->
 <!-- JQVMap -->
-<script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+<!-- <script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script> -->
+<!-- <script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> -->
 <!-- jQuery Knob Chart -->
-<script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+<!-- <script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script> -->
 <!-- daterangepicker -->
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
@@ -99,5 +143,5 @@
 <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-{{-- <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script> --}}
+<script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
 @endpush
