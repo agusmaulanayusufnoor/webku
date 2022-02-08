@@ -83,8 +83,8 @@
                       <th>Kantor</th>
                       {{-- <th>Tanggal Upload</th> --}}
                       <th>No Rekening</th>
-                      <th>Kode Obox</th>
-                      <th>Periode</th>
+                      {{-- <th>Kode Obox</th> --}}
+                      <th>Tanggal Realisasi</th>
                       <th>Nama File</th>
                       <th></th>
                       <th></th>
@@ -96,8 +96,8 @@
                       <th>Kantor</th>
                       {{-- <th>Tanggal Upload</th> --}}
                       <th>No Rekening</th>
-                      <th>Kode Obox</th>
-                      <th>Periode</th>
+                      {{-- <th>Kode Obox</th> --}}
+                      <th>Tanggal Realisasi</th>
                       <th>Nama File</th>
                       <th>Download</th>
                       <th>Hapus</th>
@@ -119,9 +119,9 @@
                       <td>
                           {{  $value -> no_rekening }}
                      </td>
-                     <td>
+                     {{-- <td>
                           {{  $value -> kode_obox }}
-                     </td>
+                     </td> --}}
                      <td>
                           {{  $value -> periode }}
                      </td>
@@ -228,7 +228,7 @@
 
         "responsive": true,
         initComplete: function () {
-            this.api().columns([1,2,3,4,5]).every( function () {
+            this.api().columns([1,2,3,4]).every( function () {
 
                 var column = this;
                 var select = $('<select><option value=""></option></select>')

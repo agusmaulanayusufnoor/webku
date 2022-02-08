@@ -17,7 +17,6 @@ class CreateUploadkresTable extends Migration
             $table->id();
             $table->foreignId('kantor_id');
             $table->string('no_rekening',12);
-            $table->string('kode_obox',7);
             $table->string('periode',30);
             $table->string('namafile',100);
             $table->string('file',100);

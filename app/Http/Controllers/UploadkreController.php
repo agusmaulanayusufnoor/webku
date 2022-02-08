@@ -61,14 +61,12 @@ class UploadkreController extends Controller
        // validasi form
         $request->validate([
             'no_rekening' => 'required',
-            'kode_obox' => 'required',
             'periode' => 'required',
             'namafile' => 'required',
             'kantor_id' => 'required',
             'file' => 'required|mimes:zip'
         ],[
             'no_rekening.required' => 'norekening harus diisi',
-            'kode_obox.required' => 'kode obox harus dipilih',
             'periode.required' => 'periode pelaporan harus diisi',
             'namafile.required' => 'nama file harus diisi',
             'kantor_id.required' => 'kantor belum dipilih',
@@ -81,7 +79,7 @@ class UploadkreController extends Controller
         $uploadfile = new Uploadkre;
         $uploadfile->kantor_id      = $request->kantor_id;
         $uploadfile->no_rekening    = $request->no_rekening;
-        $uploadfile->kode_obox      = $request->kode_obox;
+        //$uploadfile->kode_obox      = $request->kode_obox;
         $uploadfile->periode        = $request->periode;
         $uploadfile->namafile       = $request->namafile;
         $hari       = substr($uploadfile->periode,13,2);
@@ -90,7 +88,7 @@ class UploadkreController extends Controller
         $arr        = array($tahun,$bulan,$hari);
         $periode    = implode("",$arr);
         $nm         = $request->file;
-        $namafile   = "01020101.600324.".$uploadfile->kode_obox."UN-A.".$periode.".".$uploadfile->no_rekening.".".$nm->getClientOriginalName();
+        $namafile   = "01020101.600324."."UN-A.".$uploadfile->no_rekening.".".$nm->getClientOriginalName();
         $uploadfile->file       = $namafile;
         //masukan ke folder file
 

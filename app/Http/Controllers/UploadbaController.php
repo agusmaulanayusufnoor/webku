@@ -85,7 +85,7 @@ class UploadbaController extends Controller
         // $tahun      = substr($uploadfile->periode,19);
         // $arr        = array($tahun,$bulan,$hari);
         // $periode    = implode("",$arr);
-        $file   = "01020101.600324.OP001UN-A.".$uploadfile->periode.".00".$request->kantor_id.".".$nm->getClientOriginalName();
+        $file   = "01020101.600324.OP001UN-A".".00".$request->kantor_id.".".$nm->getClientOriginalName();
         $uploadfile->file       = $file;
         //masukan ke folder file
         $nm->move(public_path().'/fileba', $file);

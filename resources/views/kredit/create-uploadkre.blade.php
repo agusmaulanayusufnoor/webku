@@ -8,7 +8,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"> --}}
+ <link rel="stylesheet" href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
@@ -97,7 +97,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div> <!-- form-group// -->
-            <div class="form-group input-group">
+            {{-- <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-box"></i> </span>
             </div>
@@ -108,8 +108,9 @@
                      <option value="CR009" {{ old('kode_obox') == 'CR009' ? 'selected' : '' }}>CR009</option>
                   </select>
 
-            </div><!-- form-group// -->
-          <div class="form-group input-group">
+            </div> --}}
+            <!-- form-group// -->
+          {{-- <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
             </div>
@@ -117,6 +118,21 @@
                 @error('periode')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
+            </div> <!-- form-group// --> --}}
+            <div class="form-group input-group">
+
+                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+            </div>
+                <input type="text" id="reservationdate" data-target="#reservationdate"
+                data-toggle="datetimepicker" name="periode" value=""
+                class="form-control datetimepicker-input @error('periode') is-invalid @enderror"
+                placeholder="Tanggal Realisasi">
+                @error('periode')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                </div>
             </div> <!-- form-group// -->
             <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -167,14 +183,14 @@
       <div class="card-body">
       <label>Keterangan :</label>
       <p class="text-left">1. File yang di upload harus format file .zip (bukan .rar)</p>
-      <p class="text-left">2. Didalam .zip harus ada satu file PDF yang sudah digabung</p>
-      <p class="text-left">3. File PDF bisa digabung <a href="https://www.ilovepdf.com/merge_pdf" target="blank">disini</a></p>
-      <p class="text-left">4. Format nama file : nama_nasabah.zip contoh: 'UDIN.zip'</p>
-      <p class="text-left">5. kode obox : <br>
+      {{-- <p class="text-left">2. Didalam .zip harus ada satu file PDF yang sudah digabung</p> --}}
+      {{-- <p class="text-left">3. File PDF bisa digabung <a href="https://www.ilovepdf.com/merge_pdf" target="blank">disini</a></p> --}}
+      <p class="text-left">2. Format nama file : nama_nasabah.zip contoh: 'UDIN.zip'</p>
+      {{-- <p class="text-left">5. kode obox : <br>
                                         - CR006 = File debitur baru dengan plafon terbesar. <br>
                                         - CR008 = File debitur penurunan baki debet terbesar. <br>
                                         - CR009 = File debitur perubahan kolektibilitas berdasarkan baki debet terbesar.
-      </p>
+      </p> --}}
 
 
       </div>
@@ -207,7 +223,7 @@
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-{{-- <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script> --}}
+<script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
 {{-- <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script> --}}
 <!-- overlayScrollbars -->
@@ -222,7 +238,9 @@
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 
-
+$('#reservationdate').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
  //Date range picker
 
  $('#reservation').daterangepicker({
