@@ -57,7 +57,7 @@
       <div class="container-fluid">
 
         <div class="row justify-content-md-center">
-          <div class="col-md-8">
+          <div class="col-md-12">
           @if (session()->exists('message'))
             <div class="alert alert-success" role="alert">
             <strong>{{ session('message') }}</strong>

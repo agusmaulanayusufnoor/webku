@@ -81,11 +81,12 @@
                     <tr>
                       <th style="width: 10px">No</th>
                       <th>Kantor</th>
-                      <th>Tanggal Upload</th>
                       <th>Nama File</th>
-                      <th>Periode Laporan Obox</th>
+                      <th>Tanggal Transaksi</th>
                       <th>Download File</th>
+                      @if (auth()->user()->level_id==1)
                       <th>Hapus</th>
+                      @endif
                     </tr>
                   </thead>
                   @foreach($dataak as $key=>$value)
@@ -96,9 +97,9 @@
                       <td>
                           {{  $value -> kantor->nama_kantor }}
                       </td>
-                      <td class="text-center">
+                      {{-- <td class="text-center">
                         {{  $value -> created_at->format('d/m/Y H:m:s')}}
-                      </td>
+                      </td> --}}
                       <td>
                           {{  $value -> namafile }}
                      </td>
@@ -107,13 +108,14 @@
                      </td>
                       <td>
                         <div class="row justify-content-md-center">
-                            <a href="{{ asset('fileba/'.$value -> file) }}">
+                            <a href="{{ asset('fileak/'.$value -> file) }}">
                                 <button class="btn btn-outline-info btn-xs" type="button">
                                     <i class="fa fa-download nav-icon" alt="hapus"></i>
                                 </button>
                             </a>
                         </div>
                       </td>
+                      @if (auth()->user()->level_id==1)
                       <td>
                       <div class="row justify-content-md-center">
                       <form method="post" action="{{ url('pelayanan/download/'.$value->id) }}">
@@ -124,8 +126,8 @@
                             </button>
                         </form>
                     </div>
-
                       </td>
+                      @endif
                     </tr>
 
                   @endforeach

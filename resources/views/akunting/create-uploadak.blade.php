@@ -88,15 +88,20 @@
                 @enderror
             </div> <!-- form-group// -->
             <div class="form-group input-group">
-            <div class="input-group-prepend">
+
+                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                 <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
             </div>
-                <input id="reservation" name="periode" value="" class="form-control @error('periode') is-invalid @enderror" placeholder="Periode Laporan Obox" type="text">
+                <input type="text" id="reservationdate" data-target="#reservationdate"
+                data-toggle="datetimepicker" name="periode" value=""
+                class="form-control datetimepicker-input @error('periode') is-invalid @enderror"
+                placeholder="Tanggal Transaksi">
                 @error('periode')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
+                </div>
             </div> <!-- form-group// -->
-
 
             <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -172,7 +177,7 @@
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-{{-- <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script> --}}
+ <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
 {{-- <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script> --}}
 <!-- overlayScrollbars -->
@@ -186,7 +191,9 @@
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
-
+$('#reservationdate').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
 
  //Date range picker
 

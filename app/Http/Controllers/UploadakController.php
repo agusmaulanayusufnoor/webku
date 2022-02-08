@@ -47,4 +47,41 @@ class UploadakController extends Controller
 
         return view('akunting.create-uploadak',compact('kantors','datas'));
     }
+    public function store(Request $request)
+    {
+        //dd($request->all());
+        //validasi form
+        $request->validate([
+
+            'namafile' => 'required',
+            'kantor_id' => 'required',
+            'file' => 'required|mimes:zip'
+        ],[
+            'namafile.required' => 'nama file harus diisi',
+            'kantor_id.required' => 'kantor belum dipilih',
+            'file.required' => 'nama file harus nama kantor (ex: cab-kpo.zip)',
+            'file.mimes' => 'file yang di upload harus berbentuk .zip'
+        ]);
+
+        $nm         = $request->file;
+
+        $uploadfile = new Uploadak;
+        $uploadfile->kantor_id  = $request->kantor_id;
+        $uploadfile->namafile   = $request->namafile;
+        $uploadfile->periode   = $request->periode;
+        // $hari       = substr($uploadfile->periode,13,2);
+        // $bulan      = substr($uploadfile->periode,16,2);
+        // $tahun      = substr($uploadfile->periode,19);
+        // $arr        = array($tahun,$bulan,$hari);
+        // $periode    = implode("",$arr);
+        $file   = $request->namafile.".00".$request->kantor_id.".".$nm->getClientOriginalName();
+        $uploadfile->file       = $file;
+        //masukan ke folder file
+        $nm->move(public_path().'/fileak', $file);
+        $uploadfile->save();
+        session()->flash('message','file sudah diupload');
+        //return back();
+        return redirect('akunting/download');
+    }
+
 }
