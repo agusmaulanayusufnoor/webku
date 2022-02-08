@@ -87,7 +87,9 @@
                       <th>Tanggal Realisasi</th>
                       <th>Nama File</th>
                       <th></th>
+                      @if (auth()->user()->level_id==1)
                       <th></th>
+                      @endif
                     </tr>
                   </tfoot>
                   <thead class="text-center">
@@ -100,7 +102,9 @@
                       <th>Tanggal Realisasi</th>
                       <th>Nama File</th>
                       <th>Download</th>
+                      @if (auth()->user()->level_id==1)
                       <th>Hapus</th>
+                      @endif
                     </tr>
                   </thead>
 
@@ -137,6 +141,7 @@
                             </a>
                         </div>
                       </td>
+                      @if (auth()->user()->level_id==1)
                       <td>
                       <div class="row justify-content-md-center">
                       <form method="post" action="{{ url('kredit/download/'.$value->id) }}">
@@ -149,6 +154,7 @@
                     </div>
 
                       </td>
+                      @endif
                     </tr>
 
                   @endforeach

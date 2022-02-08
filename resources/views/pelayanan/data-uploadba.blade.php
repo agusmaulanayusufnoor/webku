@@ -84,7 +84,9 @@
                       <th>Nama File</th>
                       <th>Tanggal BA Kas</th>
                       <th>Download File</th>
+                      @if (auth()->user()->level_id==1)
                       <th>Hapus</th>
+                      @endif
                     </tr>
                   </thead>
                   @foreach($databa as $key=>$value)
@@ -111,6 +113,7 @@
                             </a>
                         </div>
                       </td>
+                      @if (auth()->user()->level_id==1)
                       <td>
                       <div class="row justify-content-md-center">
                       <form method="post" action="{{ url('pelayanan/download/'.$value->id) }}">
@@ -120,9 +123,9 @@
                                 <i class="fa fa-minus-circle nav-icon" alt="hapus"></i>
                             </button>
                         </form>
-                    </div>
-
+                        </div>
                       </td>
+                      @endif
                     </tr>
 
                   @endforeach
