@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"> --}}
+  {{-- <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"> --}}
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
@@ -39,7 +39,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-             <a class="btn btn-outline-danger" href="{{ url('kredit/uploadkre') }}" role="button">
+             <a class="btn btn-outline-secondary" href="{{ url('pelayanan/uploadtab') }}" role="button">
                  <i class="far fa-plus-square nav-icon"></i>
                  Upload File
                  </a>
@@ -69,72 +69,44 @@
             </div>
           @endif
 <!-- tabel yg dipakai -->
-              <div class="card">
-                <div class="card-header bg-danger">
-                  <h3 class="card-title">Downlod File Akunting</h3>
-                </div>
+            <div class="card">
+              <div class="card-header bg-secondary">
+                <h3 class="card-title">Downlod File Tabungan</h3>
+              </div>
               <!-- /.card-header -->
               <div class="card-body p-2">
                 <div class="d-flex justify-content-center">
                 <table id="example1" class="table table-striped table-bordered table-hover table-sm">
-                <tfoot style="display:table-header-group;">
-                  <tr>
-                      <th></th>
-                      <th>Kantor</th>
-                      {{-- <th>Tanggal Upload</th> --}}
-                      <th>No Rekening</th>
-                      {{-- <th>Kode Obox</th> --}}
-                      <th>Tanggal Realisasi</th>
-                      <th>Nama File</th>
-                      <th></th>
-                      @if (auth()->user()->level_id==1)
-                      <th></th>
-                      @endif
-                    </tr>
-                  </tfoot>
                   <thead class="text-center">
                     <tr>
                       <th style="width: 10px">No</th>
                       <th>Kantor</th>
-                      {{-- <th>Tanggal Upload</th> --}}
-                      <th>No Rekening</th>
-                      {{-- <th>Kode Obox</th> --}}
-                      <th>Tanggal Realisasi</th>
                       <th>Nama File</th>
-                      <th>Download</th>
+                      <th>Tanggal BA Kas</th>
+                      <th>Download File</th>
                       @if (auth()->user()->level_id==1)
                       <th>Hapus</th>
                       @endif
                     </tr>
                   </thead>
-
-                  <tbody>
-                  @foreach($datakre as $key=>$value)
+                  @foreach($datatab as $key=>$value)
                   <tr>
-                      <td style="width: 10px">
+                      <td>
                             {{  $loop -> iteration }}
                       </td>
                       <td>
                           {{  $value -> kantor->nama_kantor }}
                       </td>
-                      {{-- <td class="text-center">
-                        {{  $value -> created_at->format('d/m/Y')}}
-                      </td> --}}
+
                       <td>
-                          {{  $value -> no_rekening }}
+                          {{  $value -> namafile }}
                      </td>
-                     {{-- <td>
-                          {{  $value -> kode_obox }}
-                     </td> --}}
                      <td>
                           {{  $value -> periode }}
                      </td>
                       <td>
-                          {{  $value -> namafile }}
-                     </td>
-                      <td>
                         <div class="row justify-content-md-center">
-                            <a href="{{ asset('filekre/'.$value -> file) }}">
+                            <a href="{{ asset('filetab/'.$value -> file) }}">
                                 <button class="btn btn-outline-info btn-xs" type="button">
                                     <i class="fa fa-download nav-icon" alt="hapus"></i>
                                 </button>
@@ -144,21 +116,19 @@
                       @if (auth()->user()->level_id==1)
                       <td>
                       <div class="row justify-content-md-center">
-                      <form method="post" action="{{ url('kredit/download/'.$value->id) }}">
+                      <form method="post" action="{{ url('pelayanan/downloadtab/'.$value->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger btn-xs" type="submit">
                                 <i class="fa fa-minus-circle nav-icon" alt="hapus"></i>
                             </button>
                         </form>
-                    </div>
-
+                        </div>
                       </td>
                       @endif
                     </tr>
 
                   @endforeach
-                  </tbody>
                 </div>
                 </table>
               </div>
@@ -170,6 +140,7 @@
           <!-- /.col -->
         </div>
         <!-- /.row -->
+
 
       </div><!-- /.container-fluid -->
 </div>
@@ -195,7 +166,7 @@
 {{-- <script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script> --}}
 {{-- <script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
 <!-- jQuery Knob Chart -->
-{{-- <script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script> --}}
+<script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
@@ -214,47 +185,19 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 
 <script>
-//   $(function () {
-//     $("#example1").DataTable({
-//       "responsive": true, "lengthChange": false, "autoWidth": true,
-//       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-//     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-//     $('#example2').DataTable({
-//       "paging": true,
-//       "lengthChange": false,
-//       "searching": false,
-//       "ordering": true,
-//       "info": true,
-//       "autoWidth": false,
-//       "responsive": true,
-//     });
-//   });
-  $(document).ready(function() {
-    $('#example1').DataTable( {
-
-        "responsive": true,
-        initComplete: function () {
-            this.api().columns([1,2,3,4]).every( function () {
-
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
-
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
-
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option>'+d+'</option>' )
-                } );
-            } );
-        }
-    } );
-} );
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": true, "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
 </script>
 @endpush

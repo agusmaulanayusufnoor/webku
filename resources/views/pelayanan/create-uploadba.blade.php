@@ -39,7 +39,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                 <a class="btn btn-outline-info" href="{{ url('pelayanan/download') }}" role="button">
+                 <a class="btn btn-outline-secondary" href="{{ url('pelayanan/download') }}" role="button">
                  <i class="far fa-window-close nav-icon"></i>
                 Download
                  </a>
@@ -54,7 +54,7 @@
     <!-- form tambah -->
     <div class="row">
   <div class="col-md-6">
-  <div class="card card-primary">
+  <div class="card card-secondary">
 
     <div class="card-header mx-auto"  style="width: 54%; margin-top:30px">
     <h4 class="text-center">UPLOAD</h4>
@@ -82,7 +82,8 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
             </div>
-                <input name="namafile" value="" class="form-control @error('namafile') is-invalid @enderror" placeholder="Nama File" type="text">
+                <input name="namafile" value="" class="form-control @error('namafile') is-invalid @enderror" oninput="this.value = this.value.toUpperCase()"
+                placeholder="Nama File" type="text">
                 @error('namafile')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -121,7 +122,7 @@
 
 
             <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary"> Simpan  </button>
+            <button type="submit" class="btn btn-secondary"><i class="fa fa-share-square"></i> Simpan  </button>
                 @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
 

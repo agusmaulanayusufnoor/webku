@@ -142,7 +142,7 @@
     </div> <!-- form-group// -->
 
     <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary"> Simpan  </button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i> Simpan  </button>
     </div> <!-- form-group// -->
     @if (session('status'))
     <div class="alert alert-success">

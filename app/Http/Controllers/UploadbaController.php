@@ -90,7 +90,7 @@ class UploadbaController extends Controller
         //masukan ke folder file
         $nm->move(public_path().'/fileba', $file);
         $uploadfile->save();
-        session()->flash('message','file sudah diupload');
+        session()->flash('message','file '.$request->namafile.' sudah diupload');
         //return back();
         return redirect('pelayanan/download');
     }
@@ -151,10 +151,6 @@ class UploadbaController extends Controller
         session()->flash('hapus','file sudah dihapus');
         return redirect('pelayanan/download');
         }
-
-
-
-
-        //Image::where("id", $image->id)->delete();
-    }
+      //Image::where("id", $image->id)->delete();
+    }//endfunctiondestroy
 }

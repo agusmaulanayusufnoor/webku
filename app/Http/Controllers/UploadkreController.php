@@ -94,7 +94,7 @@ class UploadkreController extends Controller
 
         $nm->move(public_path().'/filekre', $namafile);
         $uploadfile->save();
-        session()->flash('message','file sudah diupload');
+        session()->flash('message','file '.$request->namafile.' sudah diupload');
         //return back();
         return redirect('kredit/download');
     }
@@ -149,7 +149,7 @@ class UploadkreController extends Controller
         //dd($id);
         if (! file_exists($file)){
             session()->flash('hapus','file sudah dihapus');
-            return redirect('pelayanan/download');
+            return redirect('kredit/download');
         }else{
             unlink("filekre/".$datakre->file);
         session()->flash('hapus','file sudah dihapus');

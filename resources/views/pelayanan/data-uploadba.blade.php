@@ -39,7 +39,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-             <a class="btn btn-primary" href="{{ url('pelayanan/uploadba') }}" role="button">
+             <a class="btn btn-outline-secondary" href="{{ url('pelayanan/uploadba') }}" role="button">
                  <i class="far fa-plus-square nav-icon"></i>
                  Upload File
                  </a>
@@ -57,24 +57,24 @@
       <div class="container-fluid">
 
         <div class="row justify-content-md-center">
-          <div class="col-md-12">
+          <div class="col-md-11">
           @if (session()->exists('message'))
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success w-50" role="alert">
             <strong>{{ session('message') }}</strong>
             </div>
           @endif
           @if (session()->exists('hapus'))
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger w-25" role="alert">
             <strong>{{ session('hapus') }}</strong>
             </div>
           @endif
 <!-- tabel yg dipakai -->
             <div class="card">
-              <div class="card-header">
+              <div class="card-header bg-secondary">
                 <h3 class="card-title">Downlod File Berita Acara Kas</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
+              <div class="card-body p-2">
                 <div class="d-flex justify-content-center">
                 <table id="example1" class="table table-striped table-bordered table-hover table-sm">
                   <thead class="text-center">

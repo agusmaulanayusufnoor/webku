@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UploadbaController;
+use App\Http\Controllers\UploadtabController;
+use App\Http\Controllers\UploaddepController;
 use App\Http\Controllers\UploadkreController;
 use App\Http\Controllers\UploadakController;
 use App\Http\Controllers\TelegramController;
@@ -52,11 +54,23 @@ Route::group(['middleware' => ['auth', 'ceklevel:1,2']],function () {
     //cari data stock
     Route::get('/search', [StockController::class, 'search'])->name('search');
 
-      //route pelayanan
- Route::get('/pelayanan/download',[UploadbaController::class,'index'])->name('download');
- Route::get('/pelayanan/uploadba',[UploadbaController::class,'create'])->name('uploadba');
- Route::post('/pelayanan/simpan-file',[UploadbaController::class,'store'])->name('simpan-file');
- Route::delete('/pelayanan/download/{id}',[UploadbaController::class,'destroy'])->name('download');
+        //route berita acara kas
+   Route::get('/pelayanan/download',[UploadbaController::class,'index'])->name('download');
+   Route::get('/pelayanan/uploadba',[UploadbaController::class,'create'])->name('uploadba');
+   Route::post('/pelayanan/simpan-file',[UploadbaController::class,'store'])->name('simpan-file');
+   Route::delete('/pelayanan/download/{id}',[UploadbaController::class,'destroy'])->name('download');
+
+   //route berita tabungan
+  Route::get('/pelayanan/downloadtab',[UploadtabController::class,'index'])->name('downloadtab');
+  Route::get('/pelayanan/uploadtab',[UploadtabController::class,'create'])->name('uploadtab');
+  Route::post('/pelayanan/simpantab-file',[UploadtabController::class,'store'])->name('simpantab');
+  Route::delete('/pelayanan/downloadtab/{id}',[UploadtabController::class,'destroy'])->name('downloadtab');
+
+  //route berita deposito
+  Route::get('/pelayanan/downloaddep',[UploaddepController::class,'index'])->name('downloaddep');
+  Route::get('/pelayanan/uploaddep',[UploaddepController::class,'create'])->name('uploaddep');
+  Route::post('/pelayanan/simpandep-file',[UploaddepController::class,'store'])->name('simpandep-file');
+  Route::delete('/pelayanan/downloaddep/{id}',[UploaddepController::class,'destroy'])->name('downloaddep');
 
 });
 //admin dan user kredit
@@ -76,5 +90,3 @@ Route::group(['middleware' => ['auth', 'ceklevel:1,4']],function () {
     Route::post('/akunting/simpan-file',[UploadakController::class,'store'])->name('simpan-file');
     Route::delete('/akunting/download/{id}',[UploadakController::class,'destroy'])->name('download');
   });
-
-

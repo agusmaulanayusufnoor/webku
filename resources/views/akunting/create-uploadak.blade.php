@@ -54,7 +54,7 @@
     <!-- form tambah -->
     <div class="row">
   <div class="col-md-6">
-  <div class="card card-primary">
+  <div class="card card-info">
 
     <div class="card-header mx-auto"  style="width: 54%; margin-top:30px">
     <h4 class="text-center">UPLOAD</h4>
@@ -120,7 +120,8 @@
 
 
             <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary"> Simpan  </button>
+
+            <button type="submit" class="btn btn-info"><i class="fa fa-share-square"></i> Simpan  </button>
                 @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
 
@@ -141,9 +142,9 @@
       <div class="card-body" style="width: 80%;">
       <label>Keterangan :</label>
       <p class="text-left">1. File yang di upload harus format file .zip (bukan .rar)</p>
-      <p class="text-left">2. Didalam .zip harus ada satu file PDF yang sudah digabung</p>
+      <!-- <p class="text-left">2. Didalam .zip harus ada satu file PDF yang sudah digabung</p>
       <p class="text-left">3. File PDF bisa digabung <a href="https://www.ilovepdf.com/merge_pdf" target="blank">disini</a></p>
-      <p class="text-left">4. Nama file harus nama kantor. contoh: cab-kpo.zip</p><br><br><br><br>
+      <p class="text-left">4. Nama file harus nama kantor. contoh: cab-kpo.zip</p><br><br><br><br> -->
 
 
       </div>

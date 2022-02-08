@@ -30,12 +30,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-              <h1 class="m-0">UPLOAD FILE MAP KREDIT</h1>
+              <h1 class="m-0">UPLOAD FILE DEPOSITO</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                 <a class="btn btn-outline-danger" href="{{ url('kredit/download') }}" role="button">
+                 <a class="btn btn-outline-secondary" href="{{ url('pelayanan/downloaddep') }}" role="button">
                  <i class="far fa-window-close nav-icon"></i>
                 Download
                  </a>
@@ -50,7 +50,7 @@
     <!-- form tambah -->
     <div class="row">
   <div class="col-sm-6">
-  <div class="card card-danger">
+  <div class="card card-secondary">
 
     <div class="card-header mx-auto"  style="width: 55%; margin-top:20px">
     <h4 class="text-center">UPLOAD</h4>
@@ -69,22 +69,9 @@
 					@endforeach
 				</div>
 				@endif
-      <form action="{{ url('/kredit/simpan-file') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ url('/pelayanan/simpandep-file') }}" method="post" enctype="multipart/form-data">
           @csrf
-          {{-- <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-            </div>
-            <select name="kantor_id" class="form-control @error('kantor_id') is-invalid @enderror">
-              <option value=""> Pilih Kantor</option>
-            @foreach ($kantors as $kode)
-                  <option value="{{ $kode->id }}" {{ old('kantor_id') == $kode->id ? 'selected' : '' }}>{{ $kode->nama_kantor }}</option>
-                  @endforeach
-            </select>
-                @error('kantor_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-          </div> <!-- form-group end.// --> --}}
+
           <input type="hidden" name="kantor_id" value={{auth()->user()->kantor_id}}></input>
 
           <div class="form-group input-group">
@@ -92,23 +79,12 @@
                 <span class="input-group-text"> <i class="fa fa-file-invoice-dollar"></i> </span>
             </div>
                 <input name="no_rekening" value="{{  old('no_rekening')  }}" class="form-control @error('no_rekening') is-invalid @enderror" placeholder="Norekening tanpa titik"
-                type="text" onkeypress="return /['0-9','K']/i.test(event.key)" maxlength="12" oninput="this.value = this.value.toUpperCase()">
+                type="text" onkeypress="return /['0-9','D']/i.test(event.key)" maxlength="12" oninput="this.value = this.value.toUpperCase()">
                 @error('no_rekening')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div> <!-- form-group// -->
-            {{-- <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-box"></i> </span>
-            </div>
-                  <select name="kode_obox" id="kode_obox" class="form-control required">
-                     <option value="">- Kode Obox -</option>
-                     <option value="CR006" {{ old('kode_obox') == 'CR006' ? 'selected' : '' }}>CR006</option>
-                     <option value="CR008" {{ old('kode_obox') == 'CR008' ? 'selected' : '' }}>CR008</option>
-                     <option value="CR009" {{ old('kode_obox') == 'CR009' ? 'selected' : '' }}>CR009</option>
-                  </select>
 
-            </div> --}}
             <!-- form-group// -->
           {{-- <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -163,7 +139,7 @@
 
 
             <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-danger"><i class="fa fa-share-square"></i> Simpan  </button>
+            <button type="submit" class="btn btn-secondary"><i class="fa fa-share-square"></i> Simpan  </button>
                 @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
 

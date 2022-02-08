@@ -79,14 +79,14 @@
                       <input name="to_date" id="to_date"
                       class="form-control datepicker" placeholder="Sampai Tanggal" type="text">
 
-                      <button type="submit" class="btn btn-primary btn-sm" name="filter" id="filter"> Filter </button>
-                      <button type="button" name="refresh" id="refresh" class="btn btn-outline-secondary btn-sm">Refresh</button>
+                      <button type="submit" class="btn btn-primary btn-sm" name="filter" id="filter"><i class="fa fa-filter"></i> Filter </button>
+                      <button type="button" name="refresh" id="refresh" class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync-alt"></i> Refresh</button>
 
                   </div> <!-- form-group// -->
 
               </div><!-- col3 -->
               <div class="col-2 col-sm-2">
-              <a href="javascript:void(0)" class="btn btn-primary" id="tombol-tambah">Tambah Stock</a>
+              <a href="javascript:void(0)" class="btn btn-primary" id="tombol-tambah"><i class="fa fa-plus-circle"></i> Tambah Stock</a>
               </div>
 
           </div>
@@ -219,7 +219,7 @@
 
                             <div class="col-sm-offset-2 col-sm-12">
                                 <button type="submit" class="btn btn-primary btn-block" id="tombol-simpan"
-                                    value="create">Simpan
+                                    value="create"><i class="fa fa-share-square"></i> Simpan
                                 </button>
                             </div>
                         </div>
@@ -425,7 +425,7 @@
         "dom": 'Blfrtip',
 
         "buttons": [
-            
+
                     {
                         extend:"copy",
                         exportOptions: {
@@ -532,7 +532,7 @@
                                 success ')}}',
                                 position: 'topRight'
                             });
-                          
+
                         },
                         error: function (data) { //jika error tampilkan error pada console
                             console.log('Error:', data);
