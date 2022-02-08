@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kode_kantor;
 use App\Models\Uploadba;
+use App\Models\Setperiode;
 use Session;
 
 class UploadbaController extends Controller
@@ -34,6 +35,7 @@ class UploadbaController extends Controller
         //
         $kantors    = Kode_kantor::all();
         $databa     = Uploadba::latest()->get();
+
         return view('pelayanan.data-uploadba',compact('databa','kantors'));
     }
 
@@ -46,8 +48,8 @@ class UploadbaController extends Controller
     {
         $kantors    = Kode_kantor::all();
         $datas      = Uploadba::all();
-
-        return view('pelayanan.create-uploadba',compact('kantors','datas'));
+        $setperiode         = Setperiode::orderBy('id', 'DESC')->take(1)->get();
+        return view('pelayanan.create-uploadba',compact('kantors','datas','setperiode'));
     }
 
     /**

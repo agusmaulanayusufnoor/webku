@@ -138,7 +138,10 @@
       <p class="text-left">1. File yang di upload harus format file .zip (bukan .rar)</p>
       <p class="text-left">2. Didalam .zip harus ada satu file PDF yang sudah digabung</p>
       <p class="text-left">3. File PDF bisa digabung <a href="https://www.ilovepdf.com/merge_pdf" target="blank">disini</a></p>
-      <p class="text-left">4. Nama file harus nama kantor. contoh: cab-kpo.zip</p><br><br><br><br>
+      <p class="text-left">4. Nama file harus nama kantor. contoh: cab-kpo.zip</p>
+      @foreach($setperiode as $key=>$value)
+      <p class="text-left text-danger">5. Periode Laporan Obox : {{ $value -> periode }}</p><br><br>
+      @endforeach
 
 
       </div>

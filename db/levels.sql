@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Waktu pembuatan: 20 Jan 2022 pada 13.04
+-- Waktu pembuatan: 07 Feb 2022 pada 03.49
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.27
 
@@ -29,7 +29,8 @@ INSERT INTO `levels` (`id`, `level_divisi`, `created_at`, `updated_at`) VALUES
 (1, 'admin', NULL, NULL),
 (2, 'pelayanan', NULL, NULL),
 (3, 'kredit', NULL, NULL),
-(4, 'akunting', NULL, NULL);
+(4, 'akunting', NULL, NULL),
+(5, 'umum', NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

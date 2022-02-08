@@ -27,6 +27,7 @@ use App\Http\Controllers\TelegramController;
 // });
 Route::get('/',[LoginController::class,'showLoginForm'])->name('showLoginForm');
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+Route::post('/setperiode',[DashboardController::class,'setperiode'])->name('setperiode');
 
 Route::post('/sendchat',[TelegramController::class,'sendchat'])->name('sendchat');
 Auth::routes();
@@ -40,7 +41,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']],function () {
     Route::resource('user', UserController::class);
 
     //route telegram
-    
+
 });
 //admin dan user pelayanan
 Route::group(['middleware' => ['auth', 'ceklevel:1,2']],function () {

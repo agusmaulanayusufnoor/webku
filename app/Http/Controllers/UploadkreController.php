@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kode_kantor;
 use App\Models\Uploadkre;
+use App\Models\Setperiode;
 use Session;
 
 class UploadkreController extends Controller
@@ -45,8 +46,8 @@ class UploadkreController extends Controller
     {
         $kantors    = Kode_kantor::all();
         $datas      = Uploadkre::all();
-
-        return view('kredit.create-uploadkre',compact('kantors','datas'));
+        $setperiode         = Setperiode::orderBy('id', 'DESC')->take(1)->get();
+        return view('kredit.create-uploadkre',compact('kantors','datas','setperiode'));
     }
 
     /**

@@ -170,13 +170,14 @@
       <p class="text-left">2. Didalam .zip harus ada satu file PDF yang sudah digabung</p>
       <p class="text-left">3. File PDF bisa digabung <a href="https://www.ilovepdf.com/merge_pdf" target="blank">disini</a></p>
       <p class="text-left">4. Format nama file : nama_nasabah.zip contoh: 'UDIN.zip'</p>
-      <p class="text-left">5. isi no rekening tanpa titik</p>
-      <p class="text-left">6. kode obox : <br>
+      <p class="text-left">5. kode obox : <br>
                                         - CR006 = File debitur baru dengan plafon terbesar. <br>
                                         - CR008 = File debitur penurunan baki debet terbesar. <br>
                                         - CR009 = File debitur perubahan kolektibilitas berdasarkan baki debet terbesar.
       </p>
-      <br><br><br>
+      @foreach($setperiode as $key=>$value)
+      <p class="text-left text-danger">6. Periode Laporan Obox : {{ $value -> periode }}</p>
+      @endforeach
 
       </div>
     </div>
