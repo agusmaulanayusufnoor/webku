@@ -27,7 +27,7 @@ use App\Http\Controllers\TelegramController;
 // });
 Route::get('/',[LoginController::class,'showLoginForm'])->name('showLoginForm');
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
-Route::post('/setperiode',[DashboardController::class,'setperiode'])->name('setperiode');
+//Route::post('/setperiode',[DashboardController::class,'setperiode'])->name('setperiode');
 
 Route::post('/sendchat',[TelegramController::class,'sendchat'])->name('sendchat');
 Auth::routes();

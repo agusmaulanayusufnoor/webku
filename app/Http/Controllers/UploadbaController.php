@@ -48,8 +48,8 @@ class UploadbaController extends Controller
     {
         $kantors    = Kode_kantor::all();
         $datas      = Uploadba::all();
-        $setperiode         = Setperiode::orderBy('id', 'DESC')->take(1)->get();
-        return view('pelayanan.create-uploadba',compact('kantors','datas','setperiode'));
+        //$setperiode         = Setperiode::orderBy('id', 'DESC')->take(1)->get();
+        return view('pelayanan.create-uploadba',compact('kantors','datas'));
     }
 
     /**
@@ -80,12 +80,12 @@ class UploadbaController extends Controller
         $uploadfile->kantor_id  = $request->kantor_id;
         $uploadfile->namafile   = $request->namafile;
         $uploadfile->periode   = $request->periode;
-        $hari       = substr($uploadfile->periode,13,2);
-        $bulan      = substr($uploadfile->periode,16,2);
-        $tahun      = substr($uploadfile->periode,19);
-        $arr        = array($tahun,$bulan,$hari);
-        $periode    = implode("",$arr);
-        $file   = "01020101.600324.OP001UN-A.".$periode.".00".$request->kantor_id.".".$nm->getClientOriginalName();
+        // $hari       = substr($uploadfile->periode,13,2);
+        // $bulan      = substr($uploadfile->periode,16,2);
+        // $tahun      = substr($uploadfile->periode,19);
+        // $arr        = array($tahun,$bulan,$hari);
+        // $periode    = implode("",$arr);
+        $file   = "01020101.600324.OP001UN-A.".$uploadfile->periode.".00".$request->kantor_id.".".$nm->getClientOriginalName();
         $uploadfile->file       = $file;
         //masukan ke folder file
         $nm->move(public_path().'/fileba', $file);

@@ -23,15 +23,15 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        $setperiode         = Setperiode::orderBy('id', 'DESC')->take(1)->get();
-        return view('dashboard',compact('setperiode'));
+       //$setperiode         = Setperiode::orderBy('id', 'DESC')->take(1)->get();
+        return view('dashboard');
     }
 
-    public function setperiode(Request $request){
-        //dd($request->all());
-        $setperiode                 = new Setperiode;
-        $setperiode->periode        = $request->periode;
-        $setperiode->save();
-        return redirect()->back()->with('pesanperiode', 'Tanggal Periode Disimpan');
-    }
+    // public function setperiode(Request $request){
+    //     //dd($request->all());
+    //     $setperiode                 = new Setperiode;
+    //     $setperiode->periode        = $request->periode;
+    //     $setperiode->save();
+    //     return redirect()->back()->with('pesanperiode', 'Tanggal Periode Disimpan');
+    // }
 }

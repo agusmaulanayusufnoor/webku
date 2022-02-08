@@ -104,57 +104,14 @@
 
            <!-- endchat -->
                 </div><!-- col-->
-<div class="col-md-4">
-<!-- set periode laporan obox -->
-            <div class="card card-success direct-chat direct-chat-primary">
-                    <div class="card-header">
-                      <h3 class="card-title">Setting Periode Laporan Obox</h3>
-                      <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                      </button>
-                    </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                      <form action="{{ url('/setperiode') }}" method="post">
-                        @csrf
-                        <div class="input-group">
-                            <input id="reservation" name="periode"
-                            value="" class="form-control @error('periode') is-invalid @enderror" placeholder="Tanggal Periode" type="text">
-                            @error('periode')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-share"></i> Simpan</button>
-                            </div>
 
-                        </div>
-
-
-                      </form>
-
-                    </div>
-                          @if(session()->has('pesanperiode'))
-                            <div class="alert alert-success alert-block" role="alert">
-                            <p class="fa fa-calendar-check"></p> {{ session()->get('pesanperiode') }}
-                            </div>
-                          @endif
-                    <!-- /.card-footer-->
-                  </div>
-
-           <!-- endset periode -->
-                </div><!-- col-->
           </div><!-- row-->
 
         @else
         <h4 class="text-danger"><marquee behavior="scroll" direction="left" scrollamount="7">
-            @foreach($setperiode as $key=>$value)
+            {{-- @foreach($setperiode as $key=>$value)
             PERIODE LAPORAN OBOX : {{ $value -> periode }}
-            @endforeach
+            @endforeach --}}
         </marquee></h4>
         @endif
         <!-- akhir content -->

@@ -57,7 +57,7 @@
       <div class="container-fluid">
 
         <div class="row justify-content-md-center">
-          <div class="col-md-9">
+          <div class="col-md-8">
           @if (session()->exists('message'))
             <div class="alert alert-success" role="alert">
             <strong>{{ session('message') }}</strong>
@@ -81,9 +81,8 @@
                     <tr>
                       <th style="width: 10px">No</th>
                       <th>Kantor</th>
-                      <th>Tanggal Upload</th>
                       <th>Nama File</th>
-                      <th>Periode Laporan Obox</th>
+                      <th>Tanggal BA Kas</th>
                       <th>Download File</th>
                       <th>Hapus</th>
                     </tr>
@@ -96,9 +95,7 @@
                       <td>
                           {{  $value -> kantor->nama_kantor }}
                       </td>
-                      <td class="text-center">
-                        {{  $value -> created_at->format('d/m/Y H:m:s')}}
-                      </td>
+
                       <td>
                           {{  $value -> namafile }}
                      </td>

@@ -175,9 +175,7 @@
                                         - CR008 = File debitur penurunan baki debet terbesar. <br>
                                         - CR009 = File debitur perubahan kolektibilitas berdasarkan baki debet terbesar.
       </p>
-      @foreach($setperiode as $key=>$value)
-      <p class="text-left text-danger">6. Periode Laporan Obox : {{ $value -> periode }}</p>
-      @endforeach
+
 
       </div>
     </div>
