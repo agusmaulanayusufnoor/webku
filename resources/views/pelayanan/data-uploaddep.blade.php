@@ -83,7 +83,7 @@
                       <th>Kantor</th>
                       {{-- <th>Tanggal Upload</th> --}}
                       <th>No Rekening</th>
-                      <th>Tanggal Realisasi</th>
+                      <th>Tanggal Buka Rekening</th>
                       <th>Nama File</th>
                       <th></th>
                       @if (auth()->user()->level_id==1)

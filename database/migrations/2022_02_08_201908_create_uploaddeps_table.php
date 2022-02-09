@@ -16,7 +16,7 @@ class CreateUploaddepsTable extends Migration
         Schema::create('uploaddeps', function (Blueprint $table) {
           $table->id();
           $table->foreignId('kantor_id');
-          $table->string('no_rekening',13);
+          $table->string('no_rekening',13)->unique();
           $table->string('periode',30);
           $table->string('namafile',100);
           $table->string('file',100);

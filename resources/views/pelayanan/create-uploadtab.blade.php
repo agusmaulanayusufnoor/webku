@@ -104,7 +104,7 @@
                 <input type="text" id="reservationdate" data-target="#reservationdate"
                 data-toggle="datetimepicker" name="periode" value=""
                 class="form-control datetimepicker-input @error('periode') is-invalid @enderror"
-                placeholder="Tanggal Realisasi">
+                placeholder="Tanggal Buka Rekening">
                 @error('periode')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

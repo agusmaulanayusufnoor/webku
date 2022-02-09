@@ -16,7 +16,7 @@ class CreateUploadkresTable extends Migration
         Schema::create('uploadkre', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kantor_id');
-            $table->string('no_rekening',12);
+            $table->string('no_rekening',12)->unique();
             $table->string('periode',30);
             $table->string('namafile',100);
             $table->string('file',100);

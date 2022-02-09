@@ -61,19 +61,20 @@ class UploadtabController extends Controller
        //dd($request->all());
       // validasi form
        $request->validate([
-           'no_rekening' => 'required',
+           'no_rekening' => 'required|unique:uploadtabs',
            'periode' => 'required',
            'namafile' => 'required',
            'kantor_id' => 'required',
-           'file' => 'required|mimes:zip|unique'
+           'file' => 'required|mimes:zip|unique:uploadtabs'
        ],[
            'no_rekening.required' => 'norekening harus diisi',
            'periode.required' => 'periode pelaporan harus diisi',
            'namafile.required' => 'nama file harus diisi',
            'kantor_id.required' => 'kantor belum dipilih',
            'file.required' => 'nama file nama_nasabah (ex: ASEP.zip)',
-           'file.mimes' => 'file yang di upload harus berbentuk .zip'
-           'file.unique' => 'nama file yg di upload sudah ada'
+           'file.mimes' => 'file yang di upload harus berbentuk .zip',
+           'file.unique' => 'nama file yg di upload sudah ada',
+           'no_rekening.unique' => 'no rekening sudah ada dalam data'
        ]);
 
 

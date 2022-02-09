@@ -168,7 +168,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('kredit/download') }}" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="fas fa-th nav-icon"></i>
                   <p>Download File</p>
                 </a>

@@ -60,7 +60,7 @@ class UploadkreController extends Controller
         //dd($request->all());
        // validasi form
         $request->validate([
-            'no_rekening' => 'required',
+            'no_rekening' => 'required|unique:uploadkre',
             'periode' => 'required',
             'namafile' => 'required',
             'kantor_id' => 'required',
@@ -71,7 +71,8 @@ class UploadkreController extends Controller
             'namafile.required' => 'nama file harus diisi',
             'kantor_id.required' => 'kantor belum dipilih',
             'file.required' => 'nama file nama_nasabah (ex: ASEP.zip)',
-            'file.mimes' => 'file yang di upload harus berbentuk .zip'
+            'file.mimes' => 'file yang di upload harus berbentuk .zip',
+            'no_rekening.unique' => 'no rekening sudah ada dalam data'
         ]);
 
 
