@@ -168,7 +168,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="kredit/downloadkre" class="nav-link">
+                <a href="kredit/download" class="nav-link">
                   <i class="fas fa-th nav-icon"></i>
                   <p>Download File</p>
                 </a>
