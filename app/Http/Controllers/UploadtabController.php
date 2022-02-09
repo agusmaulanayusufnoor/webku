@@ -65,7 +65,7 @@ class UploadtabController extends Controller
            'periode' => 'required',
            'namafile' => 'required',
            'kantor_id' => 'required',
-           'file' => 'required|mimes:zip'
+           'file' => 'required|mimes:zip|unique'
        ],[
            'no_rekening.required' => 'norekening harus diisi',
            'periode.required' => 'periode pelaporan harus diisi',
@@ -73,6 +73,7 @@ class UploadtabController extends Controller
            'kantor_id.required' => 'kantor belum dipilih',
            'file.required' => 'nama file nama_nasabah (ex: ASEP.zip)',
            'file.mimes' => 'file yang di upload harus berbentuk .zip'
+           'file.unique' => 'nama file yg di upload sudah ada'
        ]);
 
 

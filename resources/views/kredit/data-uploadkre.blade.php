@@ -71,7 +71,7 @@
 <!-- tabel yg dipakai -->
               <div class="card">
                 <div class="card-header bg-danger">
-                  <h3 class="card-title">Downlod File Akunting</h3>
+                  <h3 class="card-title">Downlod File Kredit</h3>
                 </div>
               <!-- /.card-header -->
               <div class="card-body p-2">
