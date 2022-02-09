@@ -162,13 +162,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('kredit/uploadkre') }}" class="nav-link">
+                <a href="{{ url('/kredit/uploadkre') }}" class="nav-link">
                   <i class="fa fa-upload nav-icon"></i>
                   <p>Upload File</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="kredit/download" class="nav-link">
+                <a href="/kredit/download" class="nav-link">
                   <i class="fas fa-th nav-icon"></i>
                   <p>Download File</p>
                 </a>
@@ -189,13 +189,13 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url('akunting/uploadak') }}" class="nav-link">
+                    <a href="{{ url('/akunting/uploadak') }}" class="nav-link">
                       <i class="fa fa-upload nav-icon"></i>
                       <p>Upload File</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('akunting/download') }}" class="nav-link">
+                    <a href="{{ url('/akunting/download') }}" class="nav-link">
                       <i class="fas fa-th nav-icon"></i>
                       <p>Download File</p>
                     </a>
