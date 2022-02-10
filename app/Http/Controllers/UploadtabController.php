@@ -32,6 +32,7 @@ class UploadtabController extends Controller
 
   public function index()
   {
+   
       $kantors    = Kode_kantor::all();
       $datatab     = Uploadtab::latest()->get();
       return view('pelayanan.data-uploadtab',compact('datatab','kantors'));
@@ -58,6 +59,7 @@ class UploadtabController extends Controller
 
    public function store(Request $request)
    {
+    
        //dd($request->all());
       // validasi form
        $request->validate([
@@ -97,8 +99,11 @@ class UploadtabController extends Controller
 
        $nm->move(public_path().'/filetab', $namafile);
        $uploadfile->save();
-       session()->flash('message','file '.$request->namafile.' sudah diupload');
+       
+      //$this->notify()->success("Success notification test","Success","topRight");
+       //session()->flash('message','file '.$request->namafile.' sudah diupload');
        //return back();
+       notify()->success("sudah diupload","File ".$request->namafile." ","topCenter","fa fa-chrome");
        return redirect('pelayanan/downloadtab');
    }
 
@@ -115,7 +120,8 @@ class UploadtabController extends Controller
            return redirect('pelayanan/downloadtab');
        }else{
            unlink("filetab/".$datatab->file);
-       session()->flash('hapus','file sudah dihapus');
+       //session()->flash('hapus','file sudah dihapus');
+       notify()->error("Berhasil Dihapus","File ".$datatab->namafile."","topCenter");
        return redirect('pelayanan/downloadtab');
        }
    }

@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+  <!-- <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet"> -->
 @endpush
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -210,6 +211,7 @@
 <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<!-- <script src="{{ asset('js/iziToast.js') }}"></script> -->
 
 <script>
 //   $(function () {
@@ -229,11 +231,9 @@
 //   });
   $(document).ready(function() {
     $('#example1').DataTable( {
-
         "responsive": true,
         initComplete: function () {
             this.api().columns([1,2,3,4]).every( function () {
-
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo( $(column.footer()).empty() )
@@ -241,12 +241,10 @@
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
-
                         column
                             .search( val ? '^'+val+'$' : '', true, false )
                             .draw();
                     } );
-
                 column.data().unique().sort().each( function ( d, j ) {
                     select.append( '<option>'+d+'</option>' )
                 } );
@@ -256,3 +254,4 @@
 } );
 </script>
 @endpush
+

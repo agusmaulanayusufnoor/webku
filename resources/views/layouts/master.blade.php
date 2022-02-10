@@ -10,6 +10,7 @@
 
 <!-- panggil css -->
 @stack('custom-css')
+<link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
 <!-- endcss -->
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -54,6 +55,8 @@
 <script src="{{ asset('assets/dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
+<script src="{{ asset('js/iziToast.js') }}"></script>
+@include('vendor.lara-izitoast.toast')
 <!-- endjs -->
 </body>
 </html>

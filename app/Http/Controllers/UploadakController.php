@@ -79,7 +79,8 @@ class UploadakController extends Controller
         //masukan ke folder file
         $nm->move(public_path().'/fileak', $file);
         $uploadfile->save();
-        session()->flash('message','file '.$request->namafile.' sudah diupload');
+        notify()->success("sudah diupload","File ".$request->namafile." ","topCenter");
+       // session()->flash('message','file '.$request->namafile.' sudah diupload');
         //return back();
         return redirect('akunting/download');
     }
@@ -87,17 +88,18 @@ class UploadakController extends Controller
     public function destroy($id)
     {
         //hapus data satu2
-        $databa     = Uploadak::find($id);
-        $databa->delete();
+        $dataak     = Uploadak::find($id);
+        $dataak->delete();
 
-        $file = public_path("fileak/".$databa->file);
+        $file = public_path("fileak/".$dataak->file);
         //dd($id);
         if (! file_exists($file)){
             session()->flash('hapus','file sudah dihapus');
             return redirect('akunting/download');
         }else{
-            unlink("fileak/".$databa->file);
-        session()->flash('hapus','file sudah dihapus');
+            unlink("fileak/".$dataak->file);
+            notify()->error("Berhasil Dihapus","File ".$dataak->namafile."","topCenter");
+        //session()->flash('hapus','file sudah dihapus');
         return redirect('akunting/download');
         }
       //Image::where("id", $image->id)->delete();

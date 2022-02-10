@@ -96,7 +96,8 @@ class UploaddepController extends Controller
 
           $nm->move(public_path().'/filedep', $namafile);
           $uploadfile->save();
-          session()->flash('message','file '.$request->namafile.' sudah diupload');
+          notify()->success("sudah diupload","File ".$request->namafile." ","topCenter");
+          //session()->flash('message','file '.$request->namafile.' sudah diupload');
           //return back();
           return redirect('pelayanan/downloaddep');
       }
@@ -114,7 +115,8 @@ class UploaddepController extends Controller
               return redirect('pelayanan/downloaddep');
           }else{
               unlink("filedep/".$datadep->file);
-          session()->flash('hapus','file sudah dihapus');
+              notify()->error("Berhasil Dihapus","File ".$datadep->namafile."","topCenter");
+          //session()->flash('hapus','file sudah dihapus');
           return redirect('pelayanan/downloaddep');
           }
       }
