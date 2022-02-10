@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-  <!-- <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet"> -->
+
 @endpush
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -211,7 +211,7 @@
 <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-<!-- <script src="{{ asset('js/iziToast.js') }}"></script> -->
+
 
 <script>
 //   $(function () {

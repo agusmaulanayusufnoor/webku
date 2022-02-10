@@ -32,7 +32,7 @@ class UploadtabController extends Controller
 
   public function index()
   {
-   
+
       $kantors    = Kode_kantor::all();
       $datatab     = Uploadtab::latest()->get();
       return view('pelayanan.data-uploadtab',compact('datatab','kantors'));
@@ -59,7 +59,7 @@ class UploadtabController extends Controller
 
    public function store(Request $request)
    {
-    
+
        //dd($request->all());
       // validasi form
        $request->validate([
@@ -99,7 +99,7 @@ class UploadtabController extends Controller
 
        $nm->move(public_path().'/filetab', $namafile);
        $uploadfile->save();
-       
+
       //$this->notify()->success("Success notification test","Success","topRight");
        //session()->flash('message','file '.$request->namafile.' sudah diupload');
        //return back();

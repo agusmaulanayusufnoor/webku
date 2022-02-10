@@ -74,7 +74,9 @@ class UserController extends Controller
 
         //return back()->with('status', 'Data ditambah!');
        // return $request;
-        session()->flash('message','user '.$users->username.' ditambahkan');
+       notify()->success("ditambahkan","User ".$users->username." ","topCenter","fa fa-chrome");
+
+       // session()->flash('message','user '.$users->username.' ditambahkan');
         return redirect('user');
     }
     public function __construct()
@@ -143,8 +145,8 @@ class UserController extends Controller
         $users->password    = Hash::make($request->password);
         $users->save();
 
-        //return back()->with('status', 'Data ditambah!');
-       // return $request;
+        notify()->success("Diubah","Data User ".$users->username." ","topCenter","fa fa-chrome");
+
 
         return redirect('user');
     }
@@ -161,7 +163,8 @@ class UserController extends Controller
         $users = User::find($id);
 
         $users->delete();
-        session()->flash('hapus','user sudah dihapus');
+        notify()->error("Dihapus","User ".$users->username."","topCenter");
+        //session()->flash('hapus','user sudah dihapus');
         return redirect('user');
     }
 }

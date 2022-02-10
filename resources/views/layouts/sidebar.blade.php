@@ -62,174 +62,36 @@
             @endif
 
             @if ((auth()->user()->level_id==1) or auth()->user()->level_id==2)
-          {{-- menu pelayanan --}}
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Pelayanan
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <!-- <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-plus-square nav-icon"></i>
-                  <p>Tambah Stok</p>
-                </a>
-              </li> -->
-              <li class="nav-item">
-                <a href="/stock" class="nav-link">
-                <i class="nav-icon fas fa-database"></i>
-                  <p>Data Stok</p>
-                </a>
-              </li>
+            {{-- menu pelayanan --}}
+            @include('layouts.menu.menu-pelayanan')
+            @endif
 
-              <li class="nav-item">
-                <a href="{{ url('pelayanan/uploadba') }}" class="nav-link">
-                  <i class="fa fa-upload nav-icon"></i>
-                  <p>Upload BA Kas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/pelayanan/download" class="nav-link">
-                  <i class="fas fa-th nav-icon"></i>
-                  <p>Download BA Kas</p>
-                </a>
-              </li>
-              {{-- menu tabungan --}}
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-money-bill"></i>
-                  <p>
-                    Tabungan
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-              <ul class="nav nav-treeview">
-                  <li class="nav-item small">
-                    <a href="/pelayanan/uploadtab" class="nav-link">
-                      <i class="fa fa-upload nav-icon"></i>
-                      <p>Upload Tab</p>
-                    </a>
-                  </li>
-                  <li class="nav-item small">
-                    <a href="/pelayanan/downloadtab" class="nav-link">
-                      <i class="fas fa-th nav-icon"></i>
-                      <p>Download Tab</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+            @if ((auth()->user()->level_id==1) or auth()->user()->level_id==3)
+            {{-- menu kredit --}}
+            @include('layouts.menu.menu-kredit')
+            @endif
 
-              {{-- menu deposito --}}
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-file-invoice-dollar"></i>
-                    <p>
-                      Deposito
-                      <i class="fas fa-angle-left right"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                      <li class="nav-item small">
-                        <a href="/pelayanan/uploaddep" class="nav-link">
-                          <i class="fa fa-upload nav-icon"></i>
-                          <p>Upload Dep</p>
-                        </a>
-                      </li>
-                      <li class="nav-item small">
-                        <a href="/pelayanan/downloaddep" class="nav-link">
-                          <i class="fas fa-th nav-icon"></i>
-                          <p>Download Dep</p>
-                        </a>
-                      </li>
-                    </ul>
-                </li>
+            @if ((auth()->user()->level_id==1) or auth()->user()->level_id==4)
+            {{-- menu umum dan akunting cabang --}}
+            @include('layouts.menu.menu-umum-akunting')
+            @endif
 
-            </ul>
-          </li>
-          @endif
-          @if ((auth()->user()->level_id==1) or auth()->user()->level_id==3)
-          {{-- menu kredit --}}
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>
-                Kredit
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('/kredit/uploadkre') }}" class="nav-link">
-                  <i class="fa fa-upload nav-icon"></i>
-                  <p>Upload File</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/kredit/download" class="nav-link">
-                  <i class="fas fa-th nav-icon"></i>
-                  <p>Download File</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @endif
+            @if ((auth()->user()->level_id==1) or auth()->user()->level_id==5)
+            {{-- menu umum--}}
+            @include('layouts.menu.menu-umum-pusat')
+            @endif
 
-          @if ((auth()->user()->level_id==1) or auth()->user()->level_id==4)
-          {{-- menu akunting --}}
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-archive"></i>
-              <p>
-              Akunting
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{ url('/akunting/uploadak') }}" class="nav-link">
-                      <i class="fa fa-upload nav-icon"></i>
-                      <p>Upload File</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ url('/akunting/download') }}" class="nav-link">
-                      <i class="fas fa-th nav-icon"></i>
-                      <p>Download File</p>
-                    </a>
-                  </li>
-            </ul>
-          </li>
-          @endif
+            @if ((auth()->user()->level_id==1) or auth()->user()->level_id==6)
+            {{-- menu sekdir--}}
+            @include('layouts.menu.menu-sekdir')
+            @endif
 
-          @if ((auth()->user()->level_id==1) or auth()->user()->level_id==5)
-          {{-- menu umum--}}
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-mail-bulk"></i>
-              <p>
-             Umum
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="fa fa-upload nav-icon"></i>
-                      <p>Upload File</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="fas fa-th nav-icon"></i>
-                      <p>Download File</p>
-                    </a>
-                  </li>
-            </ul>
-          </li>
-          @endif
+            @if ((auth()->user()->level_id==1) or auth()->user()->level_id==7)
+            {{-- menu sdm--}}
+            @include('layouts.menu.menu-sdm')
+            @endif
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

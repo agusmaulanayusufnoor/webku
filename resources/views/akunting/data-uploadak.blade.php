@@ -58,11 +58,11 @@
 
         <div class="row justify-content-md-center">
           <div class="col-md-11">
-          @if (session()->exists('message'))
+          {{-- @if (session()->exists('message'))
             <div class="alert alert-success w-50" role="alert">
             <strong>{{ session('message') }}</strong>
             </div>
-          @endif
+          @endif --}}
           @if (session()->exists('hapus'))
             <div class="alert alert-danger w-25" role="alert">
             <strong>{{ session('hapus') }}</strong>
